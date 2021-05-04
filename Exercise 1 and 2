@@ -1,0 +1,11 @@
+1. What is the difference between an Inheritance and Polymorphism?
+
+The main difference between inheritance and Polymorphism is that the inheritance allows a class to use the attributes
+and methods from an existing class (Super class or father class), while the polymorphism allows that an object has different
+behaviours.
+
+2. What is the difference between data Abstraction and Encapsulation?
+
+In the encapsulation I define the access modifiers with the purpose to implement security to some attributes which only have access
+through public methods while the abstraction allows me to hide the details of the implementation.
+
