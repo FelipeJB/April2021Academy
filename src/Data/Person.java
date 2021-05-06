@@ -1,7 +1,8 @@
 package Data;
 
-public class Person {
-    private String name;
-    private String id;
+public interface Person {
+    public String setName(String name);
+    public String setId(String id);
+    public int setAge(int Age);
 
 }
