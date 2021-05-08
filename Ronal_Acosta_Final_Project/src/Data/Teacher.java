@@ -1,50 +1,30 @@
 package Data;
 
-public class Teacher {
+public class Teacher extends Person{
     private double baseSalary;
-    //private double baseSalary;
-    private String name;
-    //private int id;
     private int experienceYears;
     private int activeHoursWeek;
 
 
-    public Teacher(String name, int experienceYears, int activeHoursWeek) {
-        this.name = name;
-        //  this.id = id;
+    public Teacher(int id,int age, String name,int experienceYears,int activeHoursWeek) {
+        super(id,age,name);
         this.experienceYears = experienceYears;
         this.activeHoursWeek = activeHoursWeek;
         this.baseSalary = 908526;
     }
 
 
-    @Override
-    public String toString() {
-        return "Teacher{" +
-                "name='" + name + '\'' +
-                ", experience years=" + experienceYears +
-                ", active hours per week=" + activeHoursWeek +
-                '}';
-    }
+@Override
+public String toString() {
+    return "Teacher{" +
+            "name ='" + Teacher.this.getName() + '\'' +
+            ", age =" + Teacher.this.getAge() + '\'' +
+            ", experience years =" + Teacher.this.getExperienceYears() + '\'' +
+            ", active hours per week =" + Teacher.this.getActiveHoursWeek() +
+            '}';
+}
 
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**public int getId() {
-     return id;
-     }**/
-
-    /**
-     * public void setId(int id) {
-     * this.id = id;
-     * }
-     **/
 
     public int getExperienceYears() {
         return experienceYears;

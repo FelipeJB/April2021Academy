@@ -18,11 +18,11 @@ public class Runner {
         List courseList = new ArrayList<Course>();
 
 
-        Teacher teacher1 = new Teacher("Mariana Velez",5, 20);
-        Teacher teacher2 = new Teacher("Javier Ramirez",10, 8);
-        Teacher teacher3 = new Teacher("Camila Suarez",7, 40);
-        Teacher teacher4 = new Teacher("Ismael Osorio",2, 20);
-        Teacher teacher5 = new Teacher("Isabelle Saenz",9, 40);
+        Teacher teacher1 = new Teacher(1,40,"Mariana Velez",5,6);
+        Teacher teacher2 = new Teacher(2,36,"Javier Ramirez",10, 8);
+        Teacher teacher3 = new Teacher(3,42,"Camila Suarez",7, 40);
+        Teacher teacher4 = new Teacher(4,50,"Ismael Osorio",2, 20);
+        Teacher teacher5 = new Teacher(5,42,"Isabelle Saenz",9, 40);
         teacherList.add(teacher1);
         teacherList.add(teacher2);
         teacherList.add(teacher3);
@@ -31,11 +31,11 @@ public class Runner {
 
 
 
-        Student student1 = new Student("Mario Pombo",20);
-        Student student2 = new Student("Eduardo Macías",50);
-        Student student3 = new Student("Luisa Calle",30);
-        Student student4 = new Student("Mariana Pajón",50);
-        Student student5 = new Student("Maria Rosales",40);
+        Student student1 = new Student(1,20,"Mario Pombo");
+        Student student2 = new Student(2,50,"Eduardo Macías");
+        Student student3 = new Student(3,30, "Luisa Calle");
+        Student student4 = new Student(4,50, "Mariana Pajón");
+        Student student5 = new Student(5,40, "Maria Rosales");
         studentList.add(student1);
         studentList.add(student2);
         studentList.add(student3);

@@ -3,10 +3,10 @@ package Data;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class University {
-    private List <Teacher> teacherList;
-    private List <Student> studentList;
-    private List <Course> courseList;
+public class University {
+    private List <Teacher> teacherList = new ArrayList<>();
+    private List <Student> studentList = new ArrayList<>();
+    private List <Course> courseList = new ArrayList<>();
 
     public University(){
         this.courseList= new ArrayList<>();
