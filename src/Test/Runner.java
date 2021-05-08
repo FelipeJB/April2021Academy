@@ -1,30 +1,35 @@
 package Test;
 
-import Data.Person;
-import Data.Student;
-import Data.Teacher;
+import co.com.javacourse.university.admin.UniversityProcess;
+import co.com.javacourse.university.model.*;
+import co.com.javacourse.university.utils.Constans;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Runner {
 
     public static void main(String[] args) {
-        List studentList = new ArrayList<Student>();
-        List teacherList = new ArrayList<Person>();
 
-        Student student1 = new Student("Yefry","11101", 15, "Ing Sistemas");
-        Student student2 = new Student("Lina","11102", 15, "Ing Sistemas");
-        Student student3 = new Student("Pedro","11103", 15, "Ing Sistemas");
-        Student student4 = new Student("Claudia","11104", 15, "Ing Sistemas");
-        Student student5 = new Student("Felipe","Ex9999", 15, "Ing Sistemas");
-        Student student6 = new Student("Jessica","11105", 15, "Ing Sistemas");
-        Student student7 = new Student("Liliana","11106", 15, "Ing Sistemas");
-        Student student8 = new Student("Ronal","11107", 15, "Ing Sistemas");
-        Teacher teacher1 = new Teacher("Felipe","99901",40,true,10);
-        Teacher teacher2 = new Teacher("Jimenez","99902",40,true,5);
-        Teacher teacher3 = new Teacher("Carol","99903",40,false,5);
-        Teacher teacher4 = new Teacher("Bohorquez","99904",40,false,10);
+        boolean exit = false;
+        List<Student> studentList = new ArrayList<>();
+        List<Teacher> teacherList = new ArrayList<>();
+        List<ClassRoom> classList = new ArrayList<>();
+
+        Student student1 = new Student("yefry",15);
+        Student student2 = new Student("Lina", 15);
+        Student student3 = new Student("Pedro",15);
+        Student student4 = new Student("Claudia", 15);
+        Student student5 = new Student("Felipe", 15);
+        Student student6 = new Student("Jessica", 15);
+        Student student7 = new Student("Liliana",15);
+        Student student8 = new Student("Ronal", 15);
+        PartTimeTeacher teacher1 = new PartTimeTeacher("Jimenez", 10);
+        PartTimeTeacher teacher2 = new PartTimeTeacher("Bohorquez", 20);
+        FullTimeTeacher teacher3 = new FullTimeTeacher("Jesus", 20);
+        FullTimeTeacher teacher4 = new FullTimeTeacher("Margarita", 10);
         studentList.add(student1);
         studentList.add(student2);
         studentList.add(student3);
@@ -37,16 +42,83 @@ public class Runner {
         teacherList.add(teacher2);
         teacherList.add(teacher3);
         teacherList.add(teacher4);
+        ClassRoom room1 = new ClassRoom("Math",8,"F1R101",teacher1);
+        ClassRoom room2 = new ClassRoom("Java",8,"F1R102",teacher2);
+        room1.setStudents(student1);
+        room1.setStudents(student2);
+        room2.setStudents(student1);
+        room2.setStudents(student2);
+        room2.setStudents(student3);
+        room2.setStudents(student4);
+        room2.setStudents(student5);
+        classList.add(room1);
+        classList.add(room2);
 
-        getList(studentList);
-        getList(teacherList);
+
+        do{
+            System.out.println("\n ----------------------------------------- ");
+            System.out.println(" ---------- " + Constans.UNIVERSITY_NAME + " ----------");
+            System.out.println(" ----------------------------------------- ");
+            System.out.println("1. Print the professors list");
+            System.out.println("2. Print all the classes " );
+            System.out.println("3. Consultar inventario Disponible");
+            System.out.println("4. Realizar venta");
+            System.out.println("5. Salir");
+            Scanner scan = new Scanner(System.in);
+            int option = scan.nextInt();
+
+            switch (option){
+                case 1:
+                    System.out.println(" ---------- " + "Professor List" + " ----------");
+                    getPrintList(teacherList);
+                    break;
+                case 2:
+                    System.out.println(" ---------- " + "Classes List" + " ----------");
+                    getPrintList(classList);
+                    break;
+                case 3:
+                    System.out.println(" ---------- " + "Classes List" + " ----------");
+                    break;
+
+                case 4:
+                    break;
+                case 5:
+                    exit = true;
+                    break;
+
+                default:
+                    exit = true;
+                    break;
+            }
+
+        } while (exit == false);
+
+
+
 
 
     }
-    public static void getList(List list){
+    public static void getPrintList(List list){
         for (int i = 0; i < list.size(); i++){
             System.out.println(i + ".) "+list.get(i));
         }
     }
+
+    public static List<Student> getStudentsOutOfCouRse(List<Student> list, List<Student> course){
+        List<Student> ls = new ArrayList<>();
+        for (Student i:list){
+            boolean found = false;
+            for(Student j: course){
+                if (j.getId() == i.getId()){
+                    found = true;
+                }
+            }
+            if (found = false){
+                ls.add(i);
+            }
+        }
+        return ls;
+    }
+
 
 }
