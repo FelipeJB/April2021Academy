@@ -7,5 +7,13 @@ public abstract class Teacher extends Person{
         super(name, age);
     }
 
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
     public abstract double calculateSalary();
 }

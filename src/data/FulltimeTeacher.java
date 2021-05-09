@@ -11,6 +11,22 @@ public class FulltimeTeacher extends Teacher{
         this.experienceYears = experienceYears;
     }
 
+    public double getBaseSalary() {
+        return baseSalary;
+    }
+
+    public void setBaseSalary(double baseSalary) {
+        this.baseSalary = baseSalary;
+    }
+
+    public int getExperienceYears() {
+        return experienceYears;
+    }
+
+    public void setExperienceYears(int experienceYears) {
+        this.experienceYears = experienceYears;
+    }
+
     public double calculateSalary() {
         return salary = this.baseSalary * ((this.experienceYears * 110)/100);
     }
