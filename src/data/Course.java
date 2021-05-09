@@ -1,4 +1,4 @@
 package data;
 
-public class Course {
+public class Course extends University {
 }
