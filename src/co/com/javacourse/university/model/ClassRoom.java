@@ -78,6 +78,14 @@ public class ClassRoom {
         return courseStudents;
     }
 
+    public String getCourseStudentsList() {
+        String printStudents ="";
+        for (int i = 0; i < courseStudents.size(); i++){
+            printStudents += ((i + 1) + ".) "+courseStudents.get(i)) + "\n";
+        }
+        return printStudents;
+    }
+
 
     public Teacher getTeacher() {
         return teacher;
@@ -89,12 +97,12 @@ public class ClassRoom {
 
     @Override
     public String toString() {
-        return "ClassRoom{" +
+        return "Class Room{" +
                 "name='" + name + '\'' +
-                ", hoursWeek=" + hoursWeek +
-                ", room='" + room + '\'' +
+                ", hours at week=" + hoursWeek +
+                ", Room='" + room + '\'' +
                 ", Number of students=" + courseStudents.size() +
-                ", teacher=" + teacher.getName() +
+                ", Teacher=" + teacher.getName() +
                 '}';
     }
 }
