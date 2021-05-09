@@ -1,13 +1,16 @@
 package co.com.javacourse.university.model;
 
+import co.com.javacourse.university.utils.Constans;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClassRoom {
+    private int id;
     private String name;
     private int hoursWeek;
     private String room;
-    private List<Student> courseStudents = new ArrayList<>();
+    private List<Peerson> courseStudents;
     private Teacher teacher;
 
     public ClassRoom(String name, int hoursWeek, String room, Teacher teacher) {
@@ -16,14 +19,16 @@ public class ClassRoom {
         this.room = room;
         this.courseStudents = new ArrayList<>();
         this.teacher = teacher;
+        this.id = Constans.COURSE_ID;
+        Constans.COURSE_ID ++;
     }
 
-    public boolean getStudentFromCourse (int id){
+    public boolean getStudentFromCourse (int id){ //True or False if the student is in the List
         boolean found = false;
         if (courseStudents.size()==0){
             found = false;
             }else {
-                for (Student s: courseStudents){
+                for (Peerson s: courseStudents){
                     if (s.getId() == id){
                         found = true;
                     }
@@ -32,22 +37,16 @@ public class ClassRoom {
         return found;
     }
 
-    public void setCourseStudents(List<Student> courseStudents) {
-        for (Student s: courseStudents){
-            if (getStudentFromCourse(s.getId())){
-                this.courseStudents.add(s);
-            }else{
-                System.out.println("Student ID = " + s.getId() + " Nombre = " + s.getName() + " Already Added in course =" + getName());
-            }
-        }
-    }
-
-    public void setStudents(Student s){
+    public void setStudents(Person s){ //Add the student to the list
         if (getStudentFromCourse(s.getId())){
             System.out.println("Student ID = " + s.getId() + " Nombre = " + s.getName() + " Already Added in course =" + getName());
         }else{
             this.courseStudents.add(s);
             }
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -74,7 +73,7 @@ public class ClassRoom {
         this.room = room;
     }
 
-    public List<Student> getCourseStudents() {
+    public List<Peerson> getCourseStudents() {
         return courseStudents;
     }
 
@@ -97,8 +96,9 @@ public class ClassRoom {
 
     @Override
     public String toString() {
-        return "Class Room{" +
-                "name='" + name + '\'' +
+        return "Class Room {" +
+                "Id=" + id +
+                ", Name='" + name + '\'' +
                 ", hours at week=" + hoursWeek +
                 ", Room='" + room + '\'' +
                 ", Number of students=" + courseStudents.size() +

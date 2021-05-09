@@ -1,14 +1,13 @@
 package co.com.javacourse.university.model;
 
-public abstract class Teacher{
+public abstract class Teacher extends Person{
 
     private double basicSalary;
-    private String name;
     private String typeOfContract;
 
     public Teacher(double basicSalary, String name, String typeOfContract) {
+        super(name);
         this.basicSalary = basicSalary;
-        this.name = name;
         this.typeOfContract = typeOfContract;
     }
 
@@ -18,14 +17,11 @@ public abstract class Teacher{
         return basicSalary;
     }
 
-    public String getName() {
-        return name;
-    }
-
     @Override
     public String toString() {
-        return "Teacher{" +
-                "Name=" + name + '\'' +
+        return "Teacher {" +
+                "Id=" + super.getId() +
+                ", Name=" + super.getName() + '\'' +
                 ", Contract info='" + typeOfContract + '\'' +
                 ", Salary=" + getSalary() +
                 '}';
