@@ -1,4 +1,4 @@
-public abstract class Teacher extends Person implements Role{
+public class Teacher extends Person implements Role{
 
     private double salaryBase;
     private int hours;
@@ -15,6 +15,10 @@ public abstract class Teacher extends Person implements Role{
 
     public void teach(){
         System.out.println("I teach");
+    }
+
+    public void learn(){
+        System.out.println(" I did not learn");
     }
 
     public double calculateSalary() {

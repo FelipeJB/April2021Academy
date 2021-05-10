@@ -8,12 +8,8 @@ public abstract class Person {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return firstName + " " + lastName;
     }
 
     public int getAge() {
@@ -24,22 +20,10 @@ public abstract class Person {
         this.age = age;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Person(int id, String firstName, String lastName, int age){
         this.id = getId();
-        this.firstName = getFirstName();
-        this.lastName = getLastName();
+        this.firstName = getName();
+        //this.lastName = getLastName();
         this.age = getAge();
     }
 }
