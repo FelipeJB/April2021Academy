@@ -12,6 +12,11 @@ public class Teacher extends Person{
         this.experienceYear = experienceYear;
         this.timeLabor = timeLabor;
     }
+
+    public Teacher() {
+        super();
+    }
+
     @Override
     public int getId(){
         return this.id;

@@ -10,6 +10,10 @@ public abstract class Person {
         this.name = name;
     }
 
+    public Person() {
+
+    }
+
     public abstract int getId();
 
     public abstract String getName();

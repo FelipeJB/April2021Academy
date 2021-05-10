@@ -10,6 +10,7 @@ public abstract class ClassRoom {
         this.name = name;
     }
 
+
     public abstract int getIdClass();
 
     public abstract String getName();

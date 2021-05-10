@@ -8,6 +8,11 @@ public class Student extends Person{
         super(id, name);
         this.age = age;
     }
+
+    public Student() {
+
+    }
+
     @Override
     public int getId(){
         return this.id;

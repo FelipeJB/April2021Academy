@@ -1,9 +1,19 @@
 package ClassRoom;
 
+import Person.Student;
+import Person.Teacher;
+
+import java.util.ArrayList;
+
 public class CourseRoom extends ClassRoom{
 
-    public CourseRoom(int idClass, String name){
+    private ArrayList<Student> studentList = new ArrayList<>();
+    Teacher teacher = new Teacher();
+
+    public CourseRoom(int idClass, String name, Teacher teacher, ArrayList studentList){
         super(idClass, name);
+        this.teacher = teacher;
+        this.studentList = studentList;
     }
 
     @Override
@@ -18,4 +28,15 @@ public class CourseRoom extends ClassRoom{
 
     //Two Lists of Teachers and Students
 
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public ArrayList<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(ArrayList<Student> studentList) {
+        this.studentList = studentList;
+    }
 }
