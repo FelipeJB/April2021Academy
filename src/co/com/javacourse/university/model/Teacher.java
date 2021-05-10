@@ -26,4 +26,5 @@ public abstract class Teacher extends Person{
                 ", Salary=" + getSalary() +
                 '}';
     }
+
 }

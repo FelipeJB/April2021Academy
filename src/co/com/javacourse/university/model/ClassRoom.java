@@ -10,7 +10,7 @@ public class ClassRoom {
     private String name;
     private int hoursWeek;
     private String room;
-    private List<Peerson> courseStudents;
+    private List<Student> courseStudents;
     private Teacher teacher;
 
     public ClassRoom(String name, int hoursWeek, String room, Teacher teacher) {
@@ -28,7 +28,7 @@ public class ClassRoom {
         if (courseStudents.size()==0){
             found = false;
             }else {
-                for (Peerson s: courseStudents){
+                for (Person s: courseStudents){
                     if (s.getId() == id){
                         found = true;
                     }
@@ -37,11 +37,12 @@ public class ClassRoom {
         return found;
     }
 
-    public void setStudents(Person s){ //Add the student to the list
+    public void setStudents(Student s){ //Add the student to the list
         if (getStudentFromCourse(s.getId())){
-            System.out.println("Student ID = " + s.getId() + " Nombre = " + s.getName() + " Already Added in course =" + getName());
+            System.out.println("Student ID = " + s.getId() + ", Nombre = " + s.getName() + " Already Added in course =" + getName());
         }else{
             this.courseStudents.add(s);
+            System.out.println("Student ID = " + s.getId() + ", Nombre = " + s.getName() + " is now part of the course =" + getName());
             }
     }
 
@@ -73,7 +74,7 @@ public class ClassRoom {
         this.room = room;
     }
 
-    public List<Peerson> getCourseStudents() {
+    public List<Student> getCourseStudents() {
         return courseStudents;
     }
 
