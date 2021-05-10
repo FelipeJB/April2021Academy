@@ -14,6 +14,10 @@ public class Person {
 
     }
 
+    public Person() {
+
+    }
+
 
     @Override
     public String toString() {

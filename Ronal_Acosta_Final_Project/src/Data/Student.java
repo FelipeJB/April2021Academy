@@ -8,11 +8,13 @@ public class Student extends Person {
     }
 
 
+
+
     @Override
     public String toString() {
-        return "Student{" +
-                "name='" + Student.this.getName() + '\'' +
-                ", age=" + Student.this.getAge() +
+        return "{" +
+                "Student name = '" + Student.this.getName() + '\'' +
+                ", Student age = " + Student.this.getAge() +
                 '}';
     }
 

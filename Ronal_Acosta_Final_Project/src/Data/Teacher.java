@@ -14,13 +14,14 @@ public class Teacher extends Person{
     }
 
 
-@Override
+    @Override
 public String toString() {
     return "Teacher{" +
             "name ='" + Teacher.this.getName() + '\'' +
             ", age =" + Teacher.this.getAge() + '\'' +
             ", experience years =" + Teacher.this.getExperienceYears() + '\'' +
             ", active hours per week =" + Teacher.this.getActiveHoursWeek() +
+            ", salary =" + Teacher.this.getSalary(this.activeHoursWeek,this.experienceYears) +
             '}';
 }
 
