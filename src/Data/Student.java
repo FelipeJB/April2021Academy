@@ -1,9 +1,20 @@
 package Data;
 
 public class Student {
+    private static int idConsecutive = 1;
     private int studentId;
     private String studentName;
     private int studentAge;
+
+    // un id de cada estudiante se puede crear con un static que cada vez que se crea se incrementa en 1
+
+    public Student (String istudentName, int istudentAge){
+        studentName = istudentName;
+        studentAge = istudentAge;
+        studentId = idConsecutive;
+        idConsecutive += 1;
+
+    }
 
     public int getStudentId() {
         return studentId;

@@ -1,26 +1,9 @@
 package Data;
 
-public class Teacher {
+public abstract class Teacher {
     private String teacherName;
-    private String fullTime;
+    private Double baseSalary = 7.0;
     private Double teacherSalary;
-
-
-    public String getTeacherName() {
-        return teacherName;
-    }
-
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
-    }
-
-    public String getFullTime() {
-        return fullTime;
-    }
-
-    public void setFullTime(String fullTime) {
-        this.fullTime = fullTime;
-    }
 
     public Double getTeacherSalary() {
         return teacherSalary;
@@ -28,6 +11,25 @@ public class Teacher {
 
     public void setTeacherSalary(Double teacherSalary) {
         this.teacherSalary = teacherSalary;
+    }
+
+
+    public abstract void calculateSalary ();
+
+    public Double getBaseSalary() {
+        return baseSalary;
+    }
+
+    public void setBaseSalary(Double baseSalary) {
+        this.baseSalary = baseSalary;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
 
