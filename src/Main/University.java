@@ -89,7 +89,7 @@ public class University {
         courses.add(course4);
 
         while(close==false){
-            System.out.println("\nWhat do you want to see: ");
+            System.out.println("\nWhat do you want to do: ");
             System.out.println("1. Teachers list");
             System.out.println("2. Courses list and course details");
             System.out.println("3. Create a student and add it to a course");
@@ -130,14 +130,38 @@ public class University {
                         Course courseDetails = courses.get(index);
                         //get the teacher of the course
                         Teacher courseTeacher = courseDetails.getTeacher();
-                        System.out.println("Course's Teacher Name " + courseTeacher.getTeacherName());
+                        System.out.println("Course's Teacher Name: " + courseTeacher.getTeacherName());
                         //get the students of the course
+                        System.out.println("List of Students: " );
                         List<Student> courseStudentsDetails = courseDetails.getCourseStudents();
                         for(Student StudentsOfTheCourse : courseStudentsDetails){
-                            System.out.println(" " +StudentsOfTheCourse.getStudentName() + " " + StudentsOfTheCourse.getStudentId());
+                            System.out.println(" " +StudentsOfTheCourse.getStudentName() + " " + StudentsOfTheCourse.getStudentAge());
                         }
                     }
                     break;
+                case 3://Create a new student and add it to an existing course
+                    //Receive the student details
+                    System.out.println("Enter the new student name");
+                    String inStudentName = scan.next();
+                    System.out.println("Enter the student age");
+                    int inStudentAge = scan.nextInt();
+                    Student newStudent = new Student(inStudentName, inStudentAge);
+                    //Add te student to the students list
+                    students.add(newStudent);
+                    //List the courses list and let the user choose one to add the student
+                    System.out.println("\nSelect one of the next courses to add the new student: \n");
+                    int index2 = 0;
+                    for(Course obj2course: courses) {
+                        System.out.println("Course code: " + index2 + ". Course Name: " + obj2course.getCourseName() + ". Classroom:" + obj2course.getClassroom());
+                        index2++;
+                    }
+                    System.out.println("\nType the course code: ");
+                    int courseId = scan.nextInt();
+                    //Add the student to the specific course
+                    Course courseToNewStudent = courses.get(courseId);
+                    courseToNewStudent.addStudentToCourse(newStudent);
+                    System.out.println("Student added with success to " + courseToNewStudent.getCourseName() + "\n");
+
 
             }//end switch
 

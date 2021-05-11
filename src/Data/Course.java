@@ -27,6 +27,9 @@ public class Course {
         return false;
     }
 
+    public void addStudentToCourse(Student newStudent){
+        courseStudents.add(newStudent);
+    }
 
     public List<Student> getCourseStudents() {
         return courseStudents;
