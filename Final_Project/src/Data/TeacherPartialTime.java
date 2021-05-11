@@ -18,8 +18,18 @@ public class TeacherPartialTime  extends Teacher {
     }
 
     @Override
-    public float calculateSalary() {
-        return 0;
+    public double calculateSalary() {
+        double totalSalaryP = 0.0;
+        totalSalaryP = getBaseSalary() * activeHoursPerWeek;
+        return totalSalaryP;
+    }
+
+    @Override
+    public void getInfo() {
+        System.out.println("Nombre del Profesor: " + getName());
+        System.out.println("Años de experiencia: " + getActiveHoursPerWeek());
+        System.out.println("Salario: " + calculateSalary());
+        System.out.println("Tipo de Profesor: " + getClass().getSimpleName());
     }
     //For part time teachers: base salary multiplied for its active hours per week.
 }

@@ -17,9 +17,14 @@ public abstract class Teacher extends Person{
         this.baseSalary = baseSalary;
     }
 
-    public abstract float calculateSalary();
+    public abstract double calculateSalary();
+    public abstract void getInfo();    //mostralo en la universidad
 
-    }
+}
+
+
+
+
 
 
 
