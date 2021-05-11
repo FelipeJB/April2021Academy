@@ -1,0 +1,17 @@
+#logs
+logs/
+*.log
+
+#dependency directories non-src
+.idea/
+
+#build output directories
+bin/
+out/
+
+#files generated
+*.iml
+*.tmp
+*.xml
+*.class
+
