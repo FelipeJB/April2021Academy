@@ -1,4 +1,4 @@
-public interface Role {
+public interface PersonHabilities {
     public void learn();
     public void teach();
 }
