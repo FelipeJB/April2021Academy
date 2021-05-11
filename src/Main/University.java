@@ -142,7 +142,6 @@ public class University {
             }//end switch
 
         }//end while
-
     }
 
 

@@ -13,7 +13,6 @@ public abstract class Teacher {
         this.teacherSalary = teacherSalary;
     }
 
-
     public abstract void calculateSalary ();
 
     public Double getBaseSalary() {

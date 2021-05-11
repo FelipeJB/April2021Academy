@@ -13,6 +13,7 @@ public class PartTimeTeacher extends Teacher {
        super.setTeacherSalary(super.getBaseSalary() * this.activeHoursPerWeek);
     }
 
+
     public Double getActiveHoursPerWeek() {
         return activeHoursPerWeek;
     }

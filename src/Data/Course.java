@@ -14,7 +14,6 @@ public class Course {
      classroom = iclassroom;
      teacher = iteacher;
      courseStudents = icourseStudents;
-
     }
     //How to find an student by id in the list of courses
     private boolean isStudentInTheCourse(int id){

@@ -13,7 +13,6 @@ public class Student {
         studentAge = istudentAge;
         studentId = idConsecutive;
         idConsecutive += 1;
-
     }
 
     public int getStudentId() {
