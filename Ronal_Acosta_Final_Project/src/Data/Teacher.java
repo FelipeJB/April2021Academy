@@ -1,7 +1,7 @@
 package Data;
 
 public class Teacher extends Person{
-    private double baseSalary;
+    private static double baseSalary;
     private int experienceYears;
     private int activeHoursWeek;
 
@@ -10,7 +10,7 @@ public class Teacher extends Person{
         super(id,age,name);
         this.experienceYears = experienceYears;
         this.activeHoursWeek = activeHoursWeek;
-        this.baseSalary = 908526;
+        this.baseSalary = 100000;
     }
 
 

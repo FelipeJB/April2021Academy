@@ -10,9 +10,6 @@ public class Course {
     private int noOfStudents;
     ArrayList <Student> studentList;
     private Teacher teacher;
-  //  private Object ArrayList;
-   // private Object Student;
-
 
     public Course(){
         this.noOfStudents = 0;
@@ -23,7 +20,6 @@ public class Course {
 
     public Course(String courseName,String assignedClassRoom,int noOfStudents, Teacher teacher)
         {
-            // initialise instance variables
             this.courseName=courseName;
             this.noOfStudents = noOfStudents;
             this.assignedClassRoom = assignedClassRoom;
@@ -35,7 +31,7 @@ public class Course {
 
     public void addStudent(Student newStudent){
         if(studentList.size()==noOfStudents){
-            System.out.println("The class is full, you cannot enrol.");
+            System.out.println("This course is full, you cannot enroll a new Student.");
         }
         else {
             studentList.add(newStudent);
@@ -71,20 +67,6 @@ public class Course {
         this.assignedClassRoom = assignedClassRoom;
     }
 
-   /** public ArrayList <Student> getStudentCourseList() {
-        return studentList;
-    }**/
-
-    //REVIEW THIS METHOD, I CHANGED THE PARAMETER AND THE INNER VALUES ARE DIFFERENT
-    //public void setStudentCourseList(Student student) {
-    //    this.studentCourseList = studentCourseList;
-   // }
-
-    /**
-    public void setStudentCourseList(ArrayList<Student> studentList) {
-        this.studentList = studentList;
-    }**/
-
 
     public ArrayList<Student> getStudentList() {
         return studentList;
@@ -100,10 +82,21 @@ public class Course {
     public String toString() {
         return //"{" +
                     " Course name ='" + courseName + '\'' +
-                    ", Students list = " + (studentList + "\n") +
+                    ", Number of students = " + studentList.size()  +
                     ", Assigned classroom = " + assignedClassRoom +
                     ", Teacher = " + teacher.getName() +
                     ' ';
+
+    }
+
+
+    public String printCourse() {
+        return //"{" +
+                " Course name ='" + courseName + '\'' +
+                        ", Students list = " + studentList  +
+                        ", Assigned classroom = " + assignedClassRoom +
+                        ", Teacher = " + teacher.getName() +
+                        ' ';
 
     }
 
