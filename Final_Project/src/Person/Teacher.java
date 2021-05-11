@@ -5,10 +5,8 @@ public class Teacher extends Person{
     private double baseSalary;
     private int experienceYear;
     private String timeLabor;
-    private double salary;
     private int workingHour;
     private double salaryFullTime = 0;
-    private double salaryPartTime = 0;
 
     public Teacher(int id, String name, double baseSalary, int experienceYear, String timeLabor){
         super(id, name);
@@ -56,17 +54,7 @@ public class Teacher extends Person{
         this.workingHour = workingHour;
     }
 
-    public double getSalary(String timeLabor){
-        if(timeLabor == "Yes"){
-            salary = calculateFullTimeLabor(this.baseSalary, this.experienceYear);
-        }else{
-            salary = calculatePartTimeLabor(this.baseSalary, this.workingHour);
-        }
-        return salary;
-    }
-
     public double calculateFullTimeLabor(double baseSalary, int experienceYear){
-
         for(int i = 1; i <= experienceYear; i++){
             salaryFullTime = salaryFullTime + (baseSalary * 0.1);
         }
@@ -74,6 +62,6 @@ public class Teacher extends Person{
     }
 
     public double calculatePartTimeLabor(double baseSalary, int workingHour){
-        return salaryPartTime = (baseSalary/240) * workingHour;
+        return (baseSalary/240) * workingHour;
     }
 }

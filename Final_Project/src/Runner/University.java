@@ -44,7 +44,14 @@ public class University {
             int experienceYear = main.scan.nextInt();
             System.out.print("Full Time Labor: Yes/No ");
             String timeLabor = main.scan.next();
-            double finalSalary = myTeacher.getSalary(timeLabor);
+            double finalSalary;
+            if(timeLabor.equals("No")){
+                System.out.print("\nSo, indicate how many hours the teacher works per week: ");
+                int workingHour = main.scan.nextInt();
+                finalSalary = myTeacher.calculatePartTimeLabor(baseSalary, workingHour);
+            }else{
+            finalSalary = myTeacher.calculateFullTimeLabor(baseSalary, experienceYear);
+            }
 
             Teacher teacher = new Teacher(id, name, finalSalary, experienceYear, timeLabor);
             teacherList.add(teacher);
@@ -103,14 +110,7 @@ public class University {
         }
 
         System.out.println("\n******************DATA HAS BEEN CORRECTLY ENTERED******************\n");
-        System.out.println("""
-                What action do you want to execute? (Please, Make a choice)
-                (1). Print all the Professors.
-                (2). Print all the Classes.
-                (3). Create a new Student.
-                (4). Create a new Class.
-                (5). List all the classes.
-                (6). Exit.""");
+        showMenu();
         main.option = main.scan.nextInt();
 
         while(main.option > 6){
@@ -224,14 +224,7 @@ public class University {
                     }
 
                 }
-                System.out.println("""
-                        What do you want to do next? (Please, Make a choice)
-                        (1). Print all the Professors.
-                        (2). Print all the Classes.
-                        (3). Create a new Student.
-                        (4). Create a new Class.
-                        (5). List all the classes.
-                        (6). Exit.""");
+                showMenu();
 
                 main.option = main.scan.nextInt();
                 while(main.option > 6){
@@ -243,6 +236,17 @@ public class University {
             System.exit(0);
         }
 
+
+    }
+    private static void showMenu() {
+        System.out.println("""
+                        What do you want to do next? (Please, Make a choice)
+                        (1). Print all the Professors.
+                        (2). Print all the Classes.
+                        (3). Create a new Student.
+                        (4). Create a new Class.
+                        (5). List all the classes.
+                        (6). Exit.""");
     }
 
 }
