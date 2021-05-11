@@ -8,17 +8,19 @@ public class Teacher extends Person{
     private int workingHour;
     private double salaryFullTime = 0;
 
+    //Defined Constructor
     public Teacher(int id, String name, double baseSalary, int experienceYear, String timeLabor){
         super(id, name);
         this.baseSalary = baseSalary;
         this.experienceYear = experienceYear;
         this.timeLabor = timeLabor;
     }
-
+    //Declared Constructor
     public Teacher() {
         super();
     }
 
+    //Getters and Setters section
     @Override
     public int getId(){
         return this.id;
@@ -54,6 +56,13 @@ public class Teacher extends Person{
         this.workingHour = workingHour;
     }
 
+    /***
+     *
+     * @param baseSalary
+     * @param experienceYear
+     * @return salaryFullTime
+     */
+    //Method to calculate salary when the teacher work full time
     public double calculateFullTimeLabor(double baseSalary, int experienceYear){
         for(int i = 1; i <= experienceYear; i++){
             salaryFullTime = salaryFullTime + (baseSalary * 0.1);
@@ -61,6 +70,13 @@ public class Teacher extends Person{
         return salaryFullTime = baseSalary + salaryFullTime;
     }
 
+    /***
+     *
+     * @param baseSalary
+     * @param workingHour
+     * @return salaryPartTime
+     */
+    //Method to calculate salary when the teacher work part time
     public double calculatePartTimeLabor(double baseSalary, int workingHour){
         return (baseSalary/240) * workingHour;
     }

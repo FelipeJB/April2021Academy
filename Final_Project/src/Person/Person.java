@@ -2,8 +2,8 @@ package Person;
 
 public abstract class Person {
 
-    public int id;
-    public String name;
+    protected int id;
+    protected String name;
 
     public Person(int id, String name){
         this.id = id;

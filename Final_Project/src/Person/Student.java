@@ -4,12 +4,13 @@ public class Student extends Person{
 
     private int age;
 
+    //Defined Constructor
     public Student (int id, String name, int age){
         super(id, name);
         this.age = age;
     }
 
-
+    //Getters and Setters section
     @Override
     public int getId(){
         return this.id;

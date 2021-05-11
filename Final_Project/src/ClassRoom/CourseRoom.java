@@ -10,12 +10,14 @@ public class CourseRoom extends ClassRoom{
     private ArrayList<Student> studentList = new ArrayList<>();
     Teacher teacher = new Teacher();
 
+    //Defined Constructor
     public CourseRoom(int idClass, String name, Teacher teacher, ArrayList studentList){
         super(idClass, name);
         this.teacher = teacher;
         this.studentList = studentList;
     }
 
+    //Getters and Setters section
     @Override
     public int getIdClass() {
         return this.idClass;
@@ -26,7 +28,7 @@ public class CourseRoom extends ClassRoom{
         return this.name;
     }
 
-    //Two Lists of Teachers and Students
+    //Two Lists for Teachers and Students
 
     public Teacher getTeacher() {
         return teacher;
