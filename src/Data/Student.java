@@ -6,6 +6,8 @@ public class Student {
     private String studentName;
     private int studentAge;
 
+    // un id de cada estudiante se puede crear con un static que cada vez que se crea se incrementa en 1
+
     public Student (String istudentName, int istudentAge){
         studentName = istudentName;
         studentAge = istudentAge;
