@@ -8,8 +8,8 @@ public class PartTimeTeacher extends Teacher {
         this.activeHoursPerWeek = activeHoursPerWeek;
     }
 
+
     @Override
-    //For part time teachers: base salary multiplied for its active hours per week.
     public int calculateSalary() {
         return baseSalary * activeHoursPerWeek;
     }
