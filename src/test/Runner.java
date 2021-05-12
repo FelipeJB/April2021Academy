@@ -9,6 +9,9 @@ import java.util.Scanner;
 public class Runner {
 
     static Scanner scanner = new Scanner(System.in);
+    static List<Student> students = new ArrayList<>();
+    static List<Course> courses = new ArrayList<>();
+    static List<Teacher> teachers = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -35,7 +38,22 @@ public class Runner {
              switch (option) {
                  case 1:
                      printTeachers(university);
-
+                     break;
+                 case 2:
+                     //print courses and submenu
+                     break;
+                 case 3:
+                     createStudent(university);
+                     break;
+                 case 4:
+                     //create a new class and add a teacher student etc
+                     break;
+                 case 5:
+                     //search student by student id
+                     break;
+                 case 6:
+                     exitValue = false;
+                     break;
              }
 
          }
@@ -45,14 +63,7 @@ public class Runner {
 
 
         /*for(int i = 0; i<2; i++) {
-            System.out.println("Ingrese nombre");
-            String name = scanner.next();
-            System.out.println("Ingrese edad");
-            int age = scanner.nextInt();
-            System.out.println("Ingrese id");
-            int id = scanner.nextInt();
 
-            Student studentTest = new Student(name, age, id);
         } */
 
     }
@@ -62,8 +73,6 @@ public class Runner {
         FulltimeTeacher teacher2 = new FulltimeTeacher("Pipe", 30, 850000, 10);
         ParttimeTeacher teacher3 = new ParttimeTeacher("Carol", 27, 300000, 30);
         ParttimeTeacher teacher4 = new ParttimeTeacher("Mariana", 28, 250000, 10);
-
-        List<Teacher> teachers = new ArrayList<>();
 
         teachers.add(teacher1);
         teachers.add(teacher2);
@@ -81,7 +90,7 @@ public class Runner {
         Student student4 = new Student("Ximena", 15, 05);
         Student student5 = new Student("Mateo", 18, 06);
 
-        List<Student> students = new ArrayList<>();
+
         students.add(student);
         students.add(student1);
         students.add(student2);
@@ -93,7 +102,7 @@ public class Runner {
     }
 
     public static int initializeCourse(University university) {
-        List<Course> courses = new ArrayList<>();
+
 
         Course courseMath = new Course("Matematicas", 101, university.getStudents(), university.getTeachers().get(0));
         Course courseDevelopment = new Course("Programacion I", 101, university.getStudents(), university.getTeachers().get(1));
@@ -119,7 +128,19 @@ public class Runner {
             System.out.println("Salario del profesor" + i + ": $" + university.getTeachers().get(i).calculateSalary() );
             System.out.println("------------------------");
             System.out.println("  ");
+        }
     }
 
-}
+    public static void createStudent (University university) {
+        System.out.println("Ingrese nombre");
+        String name = scanner.next();
+        System.out.println("Ingrese edad");
+        int age = scanner.nextInt();
+        System.out.println("Ingrese id");
+        int id = scanner.nextInt();
+
+        Student studentCreated = new Student(name, age, id);
+
+        students.add(studentCreated);
+    }
 }

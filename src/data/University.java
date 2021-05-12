@@ -4,7 +4,7 @@ import java.util.List;
 
 public class University {
 
-    protected List<Course> courses;
+        protected List<Course> courses;
     protected List<Student> students;
     protected List<Teacher> teachers;
 
