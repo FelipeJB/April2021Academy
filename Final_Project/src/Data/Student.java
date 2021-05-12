@@ -3,12 +3,14 @@ package Data;
 public class Student extends Person{
 
     private int id;
+    private static int contId = 1;
     private int semester;
     private String career;
     private int age;
 
-    public Student(int pId, String pName,  int pSemester, String pCareer, int pAge){
+    public Student(String pName,  int pSemester, String pCareer, int pAge){
         super(pName);
+        this.id = contId++;
         this.semester = pSemester;
         this.career = pCareer;
         this.age = pAge;
@@ -20,6 +22,14 @@ public class Student extends Person{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public static int getContId() {
+        return contId;
+    }
+
+    public static void setContId(int contId) {
+        Student.contId = contId;
     }
 
     public int getSemester() {

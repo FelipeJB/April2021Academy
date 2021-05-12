@@ -14,7 +14,7 @@ public class Course {
         this.name = pName;
         this.classRoom = pClassRoom;
         this.teacher = pTeacher;
-        this.students = new ArrayList<>();
+        this.students = pStudent;
     }
 
     public String getName() {

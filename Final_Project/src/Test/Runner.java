@@ -38,27 +38,63 @@ public class Runner {
                     System.out.println("****************************************");
                     break;
                 case 2:
-                    System.out.println("Esta es la lista de Cursos. Para conocer el detalle escriba el curso");
-                    myUniversity.displayCourses();
-                    int optionCourse = scan.nextInt();
-                    boolean finish = false;
-                    while (optionCourse <= myUniversity.getCourse().size() && !finish) {
-                      switch (optionCourse) {
-                        case 1:
-                          myUniversity.getCourse().get(0).getInfoCourse();
-                          finish = true;
-                          break;
+                    String answer;
 
-                        }
-                    }
+                    do {
+                        System.out.println("**************************************CURSOS***********************************");
+                        System.out.println("Esta es la lista de Cursos. Para conocer el detalle escriba el número del curso");
+                        myUniversity.displayCourses();
+                        System.out.println("*******************************************************************************");
+                        int optionCourse = scan.nextInt();
+
+                            switch (optionCourse) {
+                                case 1:
+                                    myUniversity.getCourse().get(0).getInfoCourse();
+                                    //System.out.println("Desea consultar otro curso?: Digite Si/No ");
+                                    //String name = scan.nextLine();
+                                    //scan = new Scanner(System.in);
+                                    break;
+                                case 2:
+                                    myUniversity.getCourse().get(1).getInfoCourse();
+                                    break;
+                                case 3:
+                                    myUniversity.getCourse().get(2).getInfoCourse();
+                                    break;
+                                case 4:
+                                    myUniversity.getCourse().get(3).getInfoCourse();
+                                    break;
+                                default:
+                                    exit = true;
+                                    break;
+                            }
+                        System.out.println("Desea consultar otro curso?: Digite Si/No ");
+                        answer = scan.nextLine();
+
+                    } while (answer.equalsIgnoreCase("Si"));   // Por que no me deja la opcion de escribir la respuesta
                     break;
 
                 case 3:
-                    System.out.println("Estas en la opcion tres");
+                    boolean exitAddStudent = false;
+                    while (!exitAddStudent && scan.nextLine()!= "") {
+                        System.out.println("Por favor digite el Nombre de el nuevo estudiante ");
+                        String name = scan.nextLine();
+                        scan = new Scanner(System.in);
+                        System.out.println("Por favor digite el semestre ");
+                        int semester = Integer.parseInt(scan.nextLine());
+                        scan = new Scanner(System.in);
+                        System.out.println("Por favor digite la carrera en la que se va a inscribir el estudiante ");
+                        String career = scan.nextLine();
+                        scan = new Scanner(System.in);
+                        System.out.println("Por favor digite la edad ");
+                        int age = Integer.parseInt(scan.nextLine());
+                        scan = new Scanner(System.in);
+                        Student newStudent = new Student(name, semester, career, age);
+                        myUniversity.addStudent(newStudent);
+                        exitAddStudent = true;
+                    }
                     break;
-
                 case 4:
-                    System.out.println("Estas en la opcion cuatro");
+                   myUniversity.displayStudents();
                     break;
 
                 case 5:
@@ -86,13 +122,13 @@ public class Runner {
     }
 
     public static void initializeStudents(University university){
-        Student one = new Student(1, "Santiago", 1, "Psicologia", 20);
-        Student two = new Student(2, "Maria Jose", 2, "Ingenieria de Sistemas", 25);
-        Student three = new Student(3, "Camilo", 5, "Medicina", 32);
-        Student four = new Student(4, "Miranda", 8, "Derecho", 19);
-        Student five = new Student(5, "Malak", 4, "Veterinaria", 22);
-        Student six = new Student(6, "Jacob", 1, "Ingenieria de Sistemas", 24);
-        Student seven = new Student(7, "Matias", 7, "Odontologia", 23);
+        Student one = new Student("Santiago", 1, "Psicologia", 20);
+        Student two = new Student("Maria Jose", 2, "Ingenieria de Sistemas", 25);
+        Student three = new Student("Camilo", 5, "Medicina", 32);
+        Student four = new Student( "Miranda", 8, "Derecho", 19);
+        Student five = new Student("Malak", 4, "Veterinaria", 22);
+        Student six = new Student("Jacob", 1, "Ingenieria de Sistemas", 24);
+        Student seven = new Student("Matias", 7, "Odontologia", 23);
 
         university.addStudent(one);
         university.addStudent(two);

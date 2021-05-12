@@ -10,7 +10,7 @@ public class University {
     private List<Teacher> teachers;
     private List<Student> studentU;
 
-    public University(){
+    public University() {
         this.universityName = "Universidad Proyecto";
         this.courses = new ArrayList<>();
         this.teachers = new ArrayList<>();
@@ -49,28 +49,35 @@ public class University {
         this.studentU = studentU;
     }
 
-    public void addStudent(Student student){
+    public void addStudent(Student student) {
         studentU.add(student);
     }
 
-    public void addTeacher(Teacher pTeacher){
+    public void addTeacher(Teacher pTeacher) {
         teachers.add(pTeacher);
     }
 
-    public void addCourse(Course course){
+    public void addCourse(Course course) {
         courses.add(course);
     }
 
-    public void displayTeachers(){
-        for (int i = 0; i < teachers.size(); i ++){
+    public void displayTeachers() {
+        for (int i = 0; i < teachers.size(); i++) {
             System.out.println("************************************");
             getTeacher().get(i).getInfo();
         }
     }
 
-    public void displayCourses(){
-        for (int i = 0; i < courses.size(); i ++){
-            System.out.println(i+1 + ". " + courses.get(i).getName() + " ");
+    public void displayCourses() {
+        for (int i = 0; i < courses.size(); i++) {
+            System.out.println(i + 1 + ". " + courses.get(i).getName() + " ");
+        }
+    }
+
+    public void displayStudents() {
+        for (int i = 0; i < studentU.size(); i++) {
+            System.out.print(studentU.get(i).getId()+ " ");
+            System.out.println(studentU.get(i).getName());
         }
     }
 }
