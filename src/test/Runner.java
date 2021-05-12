@@ -4,6 +4,7 @@ import data.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Runner {
@@ -40,7 +41,7 @@ public class Runner {
                      printTeachers(university);
                      break;
                  case 2:
-                     //print courses and submenu
+                     printCoursesData(university);
                      break;
                  case 3:
                      createStudent(university);
@@ -57,15 +58,6 @@ public class Runner {
              }
 
          }
-
-
-
-
-
-        /*for(int i = 0; i<2; i++) {
-
-        } */
-
     }
 
     public static void initializeTeachers(University university) {
@@ -120,12 +112,12 @@ public class Runner {
     }
 
     public static void printTeachers(University university) {
-        System.out.println("Profesores");
+        System.out.println("PROFESORES");
         System.out.println("  ");
         for (int i = 0; i < university.getTeachers().size(); i++) {
-            System.out.println("Nombre del profesor" + i + ": " + university.getTeachers().get(i).getName());
-            System.out.println("Edad del profesor" + i + ": " + university.getTeachers().get(i).getAge() + " años");
-            System.out.println("Salario del profesor" + i + ": $" + university.getTeachers().get(i).calculateSalary() );
+            System.out.println("Nombre del profesor " + i + ": " + university.getTeachers().get(i).getName());
+            System.out.println("Edad del profesor " + i + ": " + university.getTeachers().get(i).getAge() + " años");
+            System.out.println("Salario del profesor " + i + ": $" + university.getTeachers().get(i).calculateSalary() );
             System.out.println("------------------------");
             System.out.println("  ");
         }
@@ -139,8 +131,40 @@ public class Runner {
         System.out.println("Ingrese id");
         int id = scanner.nextInt();
 
+        List<Student> newStudentList = new ArrayList<>(students);
+
         Student studentCreated = new Student(name, age, id);
 
-        students.add(studentCreated);
+        newStudentList.add(studentCreated);
+        Random random = new Random();
+
+        int randomNumber = random.nextInt(4);
+
+        university.getCourses().get(randomNumber).setStudents(newStudentList);
+        System.out.println("El estudiante fue agregado al curso " + courses.get(randomNumber).getCourseName());
+
+    }
+
+    public static void printCoursesData(University university) {
+
+        System.out.println("Ingrese la opcion del curso que desea conocer");
+
+        for(int i = 0; i<university.getCourses().size(); i++) {
+            System.out.println(i + ". para imprimir: " + university.getCourses().get(i).getCourseName());
+        }
+
+        int optionSelected = scanner.nextInt();
+
+        for (int i = 0; i < university.getCourses().size(); i++) {
+            if (optionSelected == i) {
+                System.out.println("Nombre del curso: "+courses.get(i).getCourseName());
+                System.out.println("Nombre del docente: "+courses.get(i).getTeacher().getName());
+                for (int j = 0; j < university.getCourses().get(i).getStudents().size(); j++) {
+                    System.out.println("Nombre del estudiante "+ j + " " + courses.get(i).getStudents().get(j).getName());
+                    System.out.println("    ");
+                }
+            }
+        }
+
     }
 }
