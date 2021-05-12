@@ -25,6 +25,7 @@ public class University {
         ArrayList<Student> studentList = new ArrayList<>();
         ArrayList<CourseRoom> classList = new ArrayList<>();
         int counterStudentList;
+        int counterClassList;
 
         Teacher myTeacher = new Teacher();
 
@@ -49,60 +50,29 @@ public class University {
             }
 
             //Add new class to a Class List
-            for (int i = 0; i < numClass; i++) {
-                System.out.println("\nNow, Please insert the data of " + (i + 1) + "° class: ");
-                System.out.print("Identification: ");
-                int id = main.scan.nextInt();
-                System.out.print("Name: ");
-                String nameClass = main.scan.next();
-                //Search for a specific teacher by typing his/her entered ID
-                System.out.print("\nPlease, Select teacher by ID to add him/her to this class: ");
-                int selectTeacher = main.scan.nextInt();
-                for (Teacher teacher : teacherList) {
-                    if (selectTeacher == teacher.getId()) {
-                        myTeacher = teacher;
-                    }
-                }
-                //Indicate the number of Students per class
-                System.out.print("Indicate the number of the students for " + nameClass + " class: ");
-                int numOfStudents = main.scan.nextInt();
-                int studentCounter = 0;
-                //Create an Student Array List, fill it out with indicated students
-                ArrayList myStudentsList = new ArrayList();
-                while (studentCounter < numOfStudents) {
-                    System.out.print("Select the " + (studentCounter + 1) + "° student by ID to add him/her to this class: ");
-                    int selectStudent = main.scan.nextInt();
-                    for (Student student : studentList) {
-                        if (selectStudent == student.getId()) {
-                            myStudentsList.add(student);
-                        }
-                    }
-                    studentCounter++;
-                }
-
-                CourseRoom courseRoom = new CourseRoom(id, nameClass, myTeacher, myStudentsList);
-                classList.add(courseRoom);
-
+            for (counterClassList = 0; counterClassList < numClass; counterClassList++) {
+                createNewClass(classList, teacherList, studentList, myTeacher, counterClassList);
             }
+            counterClassList++;
 
-            System.out.println("\n******************DATA HAS BEEN CORRECTLY ENTERED******************\n");
+            printEnterDataSucceed();
             showMenu();
             main.option = main.scan.nextInt();
 
-            while (main.option > 6) {
+            while (main.option > 7) {
                 System.out.println(message);
                 main.option = main.scan.nextInt();
             }
 
-            if (main.option == 1 || main.option == 2 || main.option == 3 || main.option == 4 || main.option == 5) {
+            if (main.option == 1 || main.option == 2 || main.option == 3 || main.option == 4 || main.option == 5 || main.option == 6) {
                 do {
                     //First option to Print all professors
                     if (main.option == 1) {
                         //Print the teacher(s) that have been added
                         for (Teacher teacher : teacherList) {
-                            System.out.println((teacher.getId()) + " " + (teacher.getName()) + " " + (teacher.getBaseSalary()) + " " + (teacher.getExperienceYear()) + " " + (teacher.getTimeLabor()));
-
+                            System.out.println((teacher.getId()) + "  " + (teacher.getName()) + "  " + (teacher.getBaseSalary()) + "  " + (teacher.getExperienceYear()) + "  " + (teacher.getTimeLabor()));
                         }
+                        System.out.println("");
                         //Second option to Print all class(es) that have been added
                     } else if (main.option == 2) {
                         int classCounter = 1;
@@ -125,7 +95,6 @@ public class University {
 
                         //Third option to Create a new student
                     } else if (main.option == 3) {
-                        System.out.println("Create a new Student");
                         System.out.println("\n--- NEW STUDENT ---");
                         createNewStudent(studentList, counterStudentList);
                         counterStudentList++;
@@ -143,44 +112,15 @@ public class University {
                         //Fourth option to Create a new class
                     } else if (main.option == 4) {
                         //Create a new Class
-                        System.out.println("\nNow, Please insert the data of the new class: ");
-                        System.out.print("Identification: ");
-                        int id = main.scan.nextInt();
-                        System.out.print("Name: ");
-                        String nameClass = main.scan.next();
-
-                        System.out.print("\nPlease, Select teacher by ID to add him/her to this class: ");
-                        int selectTeacher = main.scan.nextInt();
-                        for (Teacher teacher : teacherList) {
-                            if (selectTeacher == teacher.getId()) {
-                                myTeacher = teacher;
-                            }
-                        }
-
-                        System.out.print("Indicate the number of the students for " + nameClass + " class: ");
-                        int numOfStudents = main.scan.nextInt();
-                        int studentCounter = 0;
-                        ArrayList myStudentsList = new ArrayList();
-                        while (studentCounter < numOfStudents) {
-                            System.out.print("Select the " + (studentCounter + 1) + "° student by ID to add him/her to this class: ");
-                            int selectStudent = main.scan.nextInt();
-                            for (Student student : studentList) {
-                                if (selectStudent == student.getId()) {
-                                    myStudentsList.add(student);
-                                }
-                            }
-                            studentCounter++;
-                        }
-
-                        CourseRoom courseRoom = new CourseRoom(id, nameClass, myTeacher, myStudentsList);
-                        classList.add(courseRoom);
+                        createNewClass(classList, teacherList, studentList, myTeacher, counterClassList);
+                        counterClassList++;
 
                         //Fifth option to List all class by a given student
-                    } else {
+                    } else if (main.option == 5){
                         //List All Classes
                         System.out.println("Below, It is the Student list so far: ");
                         for (Student student : studentList) {
-                            System.out.println(student.getId() + " " + student.getName() + " " + student.getAge());
+                            System.out.println(student.getId() + " " + student.getName() + " " + student.getAge() + " " + student.getScore());
                         }
                         System.out.print("Enter the Student ID that you are looking for: ");
                         int searchStudent = main.scan.nextInt();
@@ -194,15 +134,35 @@ public class University {
                             }
                         }
 
+                    }else{
+                        System.out.println("Below, It is the Student list so far: ");
+                        for (Student student : studentList) {
+                            System.out.println(student.getId() + " " + student.getName() + " " + student.getAge() + " " + student.getScore());
+                        }
+                        String keepScoring = "Yes";
+                        do {
+
+                            System.out.print("Enter the Student ID that you want to score: ");
+                            int selectStudent = main.scan.nextInt();
+                            for (Student student : studentList) {
+                                if (selectStudent == student.getId()) {
+                                    System.out.print("Please, score to the student " + student.getName() + ": ");
+                                    float scoreStudent = main.scan.nextFloat();
+                                    student.setScore(scoreStudent);
+                                }
+                            }
+                            System.out.print("Do you want keep scoring: (Yes/No) ");
+                            keepScoring = main.scan.next();
+                        }while(keepScoring.equals("Yes"));
                     }
                     showMenu();
 
                     main.option = main.scan.nextInt();
-                    while (main.option > 6) {
+                    while (main.option > 7) {
                         System.out.println(message);
                         main.option = main.scan.nextInt();
                     }
-                } while (main.option != 6);
+                } while (main.option != 7);
                 //Sixth option to exit execution off
             } else {
                 System.exit(0);
@@ -223,8 +183,9 @@ public class University {
                         (2). Print all the Classes.
                         (3). Create a new Student.
                         (4). Create a new Class.
-                        (5). List all the classes.
-                        (6). Exit.""");
+                        (5). List all the classes by typing a student's id.
+                        (6). To score the students.
+                        (7). Exit.""");
     }
 
     /***
@@ -252,6 +213,7 @@ public class University {
             System.out.print("\nSo, indicate how many hours the teacher works per week: ");
             int workingHour = main.scan.nextInt();
             finalSalary = myTeacher.calculatePartTimeLabor(baseSalary, workingHour);
+            finalSalary = Math.round(finalSalary * 100.0) / 100.0;
         } else {
             finalSalary = myTeacher.calculateFullTimeLabor(baseSalary, experienceYear);
         }
@@ -275,10 +237,66 @@ public class University {
         String name = main.scan.next();
         System.out.print("Age: ");
         int age = main.scan.nextInt();
+        float score = 0;
 
-        Student student = new Student(id, name, age);
+        Student student = new Student(id, name, age, score);
         studentList.add(student);
 
         return studentList;
+    }
+
+    /***
+     *
+     * @param classList
+     * @param teacherList
+     * @param studentList
+     * @param myTeacher
+     * @param counterClassList
+     * @return classList
+     */
+    private static ArrayList<CourseRoom> createNewClass(ArrayList<CourseRoom> classList, ArrayList<Teacher> teacherList, ArrayList<Student> studentList, Teacher myTeacher, int counterClassList){
+        System.out.println("\nNow, Please insert the data of " + (counterClassList + 1) + "° class: ");
+        System.out.print("Identification: ");
+        int id = main.scan.nextInt();
+        System.out.print("Name: ");
+        String nameClass = main.scan.next();
+        //Search for a specific teacher by typing his/her entered ID
+        System.out.print("\nPlease, Select teacher by ID to add him/her to this class: ");
+        int selectTeacher = main.scan.nextInt();
+        for (Teacher teacher : teacherList) {
+            if (selectTeacher == teacher.getId()) {
+                myTeacher = teacher;
+            }
+        }
+        //Indicate the number of Students per class
+        System.out.print("Indicate the number of the students for " + nameClass + " class: ");
+        int numOfStudents = main.scan.nextInt();
+        int studentCounter = 0;
+        //Create an Student Array List, fill it out with indicated students
+        ArrayList myStudentsList = new ArrayList();
+        while (studentCounter < numOfStudents) {
+            System.out.print("Select the " + (studentCounter + 1) + "° student by ID to add him/her to this class: ");
+            int selectStudent = main.scan.nextInt();
+            for (Student student : studentList) {
+                if (selectStudent == student.getId()) {
+                    myStudentsList.add(student);
+                }
+            }
+            studentCounter++;
+        }
+
+        CourseRoom courseRoom = new CourseRoom(id, nameClass, myTeacher, myStudentsList);
+        classList.add(courseRoom);
+
+        return classList;
+    }
+
+    /***
+     * Print succeed message
+     */
+    private static void printEnterDataSucceed(){
+        System.out.println("\n*******************************************************************");
+        System.out.println("*                 DATA HAS BEEN CORRECTLY ENTERED                 *");
+        System.out.println("*******************************************************************\n");
     }
 }
