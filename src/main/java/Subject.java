@@ -18,6 +18,4 @@ public class Subject {
     public  int getRoomNumber(){
         return roomNumber;
     }
-
-    protected List<Subject> subjectsList = new ArrayList<>();
 }

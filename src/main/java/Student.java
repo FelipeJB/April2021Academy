@@ -16,6 +16,4 @@ public class Student extends Person implements PersonHabilities {
     public void teach() {
         System.out.println("I did not teach");
     }
-
-    protected List<Student> studentsList = new ArrayList<>();
 }

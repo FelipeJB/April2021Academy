@@ -17,8 +17,6 @@ public class Teacher extends Person implements PersonHabilities {
         this.experienceYears = experienceYears;
     }
 
-    protected List<Teacher> teachersList = new ArrayList<Teacher>();
-
     @Override
     public void teach(){
         System.out.println("I teach");
