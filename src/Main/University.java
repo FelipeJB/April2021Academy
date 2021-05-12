@@ -9,11 +9,7 @@ import static java.lang.Integer.parseInt;
 
 public class University {
     /*
-    a. Print all the professors with its data
-    b. Print all the classes and a submenu to select a class in order to print the class data including its
-    teacher and students
-    c. Create a new student and add it to an existing class
-    d. Create a new class and add a teacher, students and its relevant data
+
     e. List all the classes in which a given student is included (hint: search by id)
     f. Exit
     */
@@ -115,10 +111,10 @@ public class University {
                     break;
                 case 2:
                     //Print all the courses
-                    int index = 0;
+                    int indexCourse = 0;
                     for(Course objcourse: courses) {
-                        System.out.println("Course code: " + index + ". Course Name: " + objcourse.getCourseName() + ". Classroom:" + objcourse.getClassroom());
-                        index++;
+                        System.out.println("Course code: " + indexCourse + ". Course Name: " + objcourse.getCourseName() + ". Classroom:" + objcourse.getClassroom());
+                        indexCourse++;
                     }
                     //Ask for the Course Code to see its details
                     System.out.println("\nEnter the course code to see details or EXIT to continue");
@@ -126,8 +122,8 @@ public class University {
                     if(codeCourse.equals("EXIT")){
                         break;
                     }else{
-                        index = parseInt(codeCourse);
-                        Course courseDetails = courses.get(index);
+                        indexCourse = parseInt(codeCourse);
+                        Course courseDetails = courses.get(indexCourse);
                         //get the teacher of the course
                         Teacher courseTeacher = courseDetails.getTeacher();
                         System.out.println("Course's Teacher Name " + courseTeacher.getTeacherName());
@@ -139,6 +135,54 @@ public class University {
                     }
                     break;
 
+
+
+
+                case 4: //Create a new course and add a teacher, students and its relevant data
+                    System.out.println("\nEnter the new Course Name: ");
+                    String newCourseName = scan.next();
+                    System.out.println("\nEnter the Course Classroom: ");
+                    String newCourseClassroom = scan.next();
+                    System.out.println("\nEnter the Teacher Name: ");
+                    String newTeacherName = scan.next();
+                    System.out.println("\nIs the Teacher Full Time? Y / N: ");
+                    String teacherTypeStatus = scan.next();
+                    Teacher teacherOfCourse;
+                    if(teacherTypeStatus.equals("Y")){
+                        System.out.println("\nEnter the years of experience: ");
+                        Double newYearsOfExperience = scan.nextDouble();
+                        teacherOfCourse= new FullTimeTeacher(newTeacherName, newYearsOfExperience); //POLIMORFISMO
+
+                    }else{
+                        System.out.println("\nEnter the Active hours per week: ");
+                        Double newActiveHoursPerWeek = scan.nextDouble();
+                        teacherOfCourse= new PartTimeTeacher(newTeacherName, newActiveHoursPerWeek);//POLIMORFISMO
+
+                    }
+
+                    System.out.println("\nList of students in the University");
+                    int indexStudent = 0;
+                    for(Student objStudent: students) {
+                        System.out.println("Student code: " + indexStudent + ". Student Name: " + objStudent.getStudentName());
+                        indexStudent++;
+                    }
+                    //mientras quiera ingresar mas estudiantes
+                    boolean enrollStudentStatus= true;
+                    List<Student> newStudentsListCourse = new ArrayList<>();
+                    while(enrollStudentStatus == true){
+                            System.out.println("\nEnroll the Students to the Course, digit the Student code: ");
+                            int newStudentCourse = scan.nextInt();
+                            Student NewStudentCourse = students.get(newStudentCourse);
+                            newStudentsListCourse.add(NewStudentCourse);
+                            System.out.println("\nEnroll other Student to the Course? Y / N ");
+                            if(scan.next().equals("N") ){
+                                enrollStudentStatus = false;
+                            }
+                    }
+
+                    Course newCourse = new Course(newCourseName, newCourseClassroom,teacherOfCourse ,newStudentsListCourse);
+                    courses.add(newCourse);
+                    System.out.println("\nCourse created with Success ");
             }//end switch
 
         }//end while
