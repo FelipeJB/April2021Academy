@@ -3,9 +3,9 @@ package co.com.javacourse.university.model;
 import co.com.javacourse.university.utils.Constans;
 
 public class Student extends Person{
-    public String name;
-    public int age;
-    public int id;
+    private String name;
+    private int age;
+    private int id;
 
     public Student(String name, int age) {
         super(name);

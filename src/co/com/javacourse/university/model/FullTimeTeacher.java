@@ -15,4 +15,15 @@ public class FullTimeTeacher extends Teacher{
     public double getSalary(){
         return getBasicSalary() * experienceYears * 1.1;
     }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "Id = " + super.getId() +
+                ", Name=" + super.getName() +
+                ", Contract info=" + Constans.FULL_TIME_TEACHER +
+                ", Years of experience=" + experienceYears +
+                ", Salary=" + getSalary() +
+                '}';
+    }
 }

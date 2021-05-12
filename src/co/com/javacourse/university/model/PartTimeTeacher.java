@@ -15,4 +15,15 @@ public class PartTimeTeacher extends Teacher{
     public double getSalary(){
         return getBasicSalary() * activeHours;
     }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+            "Id = " + super.getId() +
+            ", Name=" + super.getName() +
+            ", Contract info=" + Constans.PART_TIME_TEACHER +
+            ", Active Hours=" + activeHours +
+            ", Salary=" + getSalary() +
+            '}';
+    }
 }

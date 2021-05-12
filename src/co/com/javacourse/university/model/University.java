@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class University {
-    String name = Constans.UNIVERSITY_NAME;
+
     private List<Student> studentList = new ArrayList<>();
     private List<Teacher> teacherList = new ArrayList<>();
     private List<ClassRoom> classList = new ArrayList<>();
@@ -36,6 +36,16 @@ public class University {
     }
 
 
+    public void setTeacherFTT (String name, int years){
+        FullTimeTeacher ftt = new FullTimeTeacher(name, years);
+        teacherList.add(ftt);
+    }
+
+    public void setTeacherPTT(String name, int hours){
+        PartTimeTeacher ptt = new PartTimeTeacher(name, hours);
+        teacherList.add(ptt);
+    }
+
     public Student setStudent(String name, int age){ //Add the new student
         Student studentNew = new Student(name,age);
         setAddStudent(studentNew);//Is added to the list
@@ -47,11 +57,11 @@ public class University {
             System.out.println("The student " + s.getName() + " Is already in the course");
         }else{
             c.setStudents(s);
-            System.out.println("The student " + s.getName() + " Was Added to the course " + c.getName());
+            //System.out.println("The student " + s.getName() + " Was Added to the course " + c.getName());
         }
     }
 
-    public Student getStudent(int id){ //Will get the student object.
+    public Student getStudent(int id) throws Exception{ //Will get the student object.
         Student s = null;
 
         for (Student x:studentList){
@@ -60,7 +70,7 @@ public class University {
             }
         }
         if (s == null){
-            System.out.println("Student Do not exist"); //Check issue with a try catch
+            throw new Exception("Student Do not exist");
         }
         return  s;
     }
@@ -122,7 +132,12 @@ public class University {
             if (c.getId() == id){
                 result = true;
             }else{
-                result = false;
+                if (result == true){
+                    result = true;
+                }else {
+                    result = false;
+                }
+
             }
         }
         return result;
@@ -141,6 +156,10 @@ public class University {
             printClasses = " is presented in the classes:\n" + printClasses;
         }
         return printClasses;
+    }
+
+    public void getEndStatement (){
+        System.out.println("--- ---->>>> Back to the main menu <<<<---- ---");
     }
 
     public void start (){
