@@ -34,8 +34,8 @@ public class Runner {
 
              switch (option) {
                  case 1:
-                     System.out.println("Profesores");
-                     for (int i = 0; )
+                     printTeachers(university);
+
              }
 
          }
@@ -59,8 +59,8 @@ public class Runner {
 
     public static void initializeTeachers(University university) {
         FulltimeTeacher teacher1 = new FulltimeTeacher("Romi", 30, 600000, 5);
-        FulltimeTeacher teacher2 = new FulltimeTeacher("Pipe", 30, 1000000, 10);
-        ParttimeTeacher teacher3 = new ParttimeTeacher("Carol", 27, 800000, 30);
+        FulltimeTeacher teacher2 = new FulltimeTeacher("Pipe", 30, 850000, 10);
+        ParttimeTeacher teacher3 = new ParttimeTeacher("Carol", 27, 300000, 30);
         ParttimeTeacher teacher4 = new ParttimeTeacher("Mariana", 28, 250000, 10);
 
         List<Teacher> teachers = new ArrayList<>();
@@ -110,4 +110,16 @@ public class Runner {
         return courses.size();
     }
 
+    public static void printTeachers(University university) {
+        System.out.println("Profesores");
+        System.out.println("  ");
+        for (int i = 0; i < university.getTeachers().size(); i++) {
+            System.out.println("Nombre del profesor" + i + ": " + university.getTeachers().get(i).getName());
+            System.out.println("Edad del profesor" + i + ": " + university.getTeachers().get(i).getAge() + " años");
+            System.out.println("Salario del profesor" + i + ": $" + university.getTeachers().get(i).calculateSalary() );
+            System.out.println("------------------------");
+            System.out.println("  ");
+    }
+
+}
 }
