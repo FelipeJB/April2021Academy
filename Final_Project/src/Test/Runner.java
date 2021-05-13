@@ -17,7 +17,7 @@ public class Runner {
         initializeCourses(myUniversity);
 
 
-        System.out.println("Bienvenidos a su " + myUniversity.getUniversityName());
+        System.out.println("*****************" + "Bienvenidos a su " + myUniversity.getUniversityName() + "****************");
         boolean exit = false;
 
 
@@ -25,18 +25,21 @@ public class Runner {
             System.out.println("Ingrese el número de la opcion que quiere realizar");
             System.out.println("1. Imprimir los profesores con sus respectivos datos");
             System.out.println("2. Imprimir las clases");
-            System.out.println("3. Crear un nuevo estudiante y agregarlo a una clase");
-            System.out.println("4. Crear un nuevo curso, con toda su información");
-            System.out.println("5. Listar todas las clases donde esta un estudiante (Por Id) ");
-            System.out.println("6. Salir");
+            System.out.println("3. Imprimir los estudiantes");
+            System.out.println("4. Crear un nuevo estudiante y agregarlo a una clase existente");
+            System.out.println("5. Crear un nuevo curso, y agregarle el profesor y los estudiantes");
+            System.out.println("6. Listar todas las clases donde esta un estudiante (Por Id) ");
+            System.out.println("7. Salir");
+            System.out.println("***********************************************************************");
             Scanner scan = new Scanner(System.in);
             int option = scan.nextInt();
+            System.out.println("***********************************************************************");
 
             switch (option){
                 case 1:
-                    System.out.println("****************PROFESORES**************");
+                    System.out.println("****************************PROFESORES**************************");
                     myUniversity.displayTeachers();
-                    System.out.println("****************************************");
+                    System.out.println("****************************************************************");
                     break;
                 case 2:
                     String answer;
@@ -64,6 +67,9 @@ public class Runner {
                                 case 4:
                                     myUniversity.getCourse().get(3).getInfoCourse();
                                     break;
+                                case 5:
+                                    myUniversity.getCourse().get(4).getInfoCourse();
+                                    break;
                                 default:
                                     exit = true;
                                     break;
@@ -75,6 +81,12 @@ public class Runner {
                     break;
 
                 case 3:
+                    System.out.println("****************************ESTUDIANTES**************************");
+                    myUniversity.displayStudents();
+                    System.out.println("*****************************************************************");
+                    break;
+
+                case 4:
                     boolean exitAddStudent = false;
                     while (!exitAddStudent && scan.nextLine()!= "") {
                         System.out.println("Por favor digite el Nombre de el nuevo estudiante ");
@@ -101,12 +113,62 @@ public class Runner {
                         exitAddStudent = true;
                     }
                     break;
-                case 4:
-
 
                 case 5:
-                    System.out.println("Estas en la opcion cinco");
-                    myUniversity.displayStudents();
+                    boolean exitAddCourse = false;
+                    while (!exitAddCourse && scan.nextLine()!= "") {
+                        System.out.println("Por favor digite el Nombre de el nuevo curso ");
+                        String nameCourse = scan.nextLine();
+                        scan = new Scanner(System.in);
+                        System.out.println("Por favor digite el número del curso ");
+                        int roomCourse = Integer.parseInt(scan.nextLine());
+                        scan = new Scanner(System.in);
+                        System.out.println("Digite el nombre del Profesor, que dictara la clase "  +
+                                "Marina/Carlos/Camilo/Catalina ");
+                        String teacherName = scan.nextLine();
+                        scan = new Scanner(System.in);
+                        int i;
+                        Teacher teacherCourse = null;
+                        for(i = 0; i < myUniversity.getTeacher().size(); i++) {
+                            if (teacherName.equalsIgnoreCase(myUniversity.getTeacher().get(i).getName())) {
+                                teacherCourse = myUniversity.getTeacher().get(i);
+                            }
+                        }
+                     /*  for(i = 0; i < myUniversity.getTeacher().size(); i++){
+                           teacherCourse = myUniversity.getCourse().get(i).addTeacherToCourse(teacherName);
+                           System.out.println(teacherCourse);
+                       }*/
+                        System.out.println("Digite el ID del Estudiante, que desea agregar a la clase "  +
+                                "1/2/3/4/5/6/7 ");
+                        int studentId = Integer.parseInt(scan.nextLine());
+                        scan = new Scanner(System.in);
+                        List<Student> studentCourse = null;
+                        for(i = 0; i < myUniversity.getStudentU().size(); i++) {
+                            if (studentId == myUniversity.getStudentU().get(i).getId()) {
+                                studentCourse = new ArrayList<>(Arrays.asList(myUniversity.getStudentU().get(i)));
+                            }
+                        }
+                        Course newCourse = new Course(nameCourse, roomCourse, teacherCourse, studentCourse);
+                        myUniversity.addCourse(newCourse);
+                        exitAddCourse = true;
+                    }
+                    break;
+
+                case 6:
+                    boolean exitIncludeStudent = false;
+                    while (!exitIncludeStudent && scan.nextLine()!= "") {
+                        System.out.println("Digite el ID del Estudiante, para conocer los cursos en los que esta incluido ");
+                        myUniversity.displayStudents();
+                        int studentId = Integer.parseInt(scan.nextLine());
+                        scan = new Scanner(System.in);
+                        /*String totalCourses = "";
+                        for (int i = 0; i < myUniversity.getCourse().size(); i ++) {
+                           System.out.println(myUniversity.getCourse().get(i).getStudentFromCourseById(studentId));
+                            //System.out.println(myUniversity.getCourse().get(i).getById(studentId));
+                        }*/
+                        System.out.println(myUniversity.getCoursesforStudent(studentId));
+                        exitIncludeStudent = true;
+                    }
                     break;
 
                 default:

@@ -49,9 +49,17 @@ public class Course {
         this.teacher = teacher;
     }
 
-    //Aqui hace falta generar los ids automaticos de forma estatica, atributo estatico en la
-    // clase que me diga en cual instancia vamos, y al construir cada estudiante iguale el id a esa cantidad y le sune 1 a la cantidad
-    public Student getStudentFromClassById(int id){
+    public String getStudentFromCourseById(int id){
+        String courseName = "";
+        for (Student s:this.students) {
+            if (s.getId() == id){
+                courseName = name;
+            }
+        }
+        return courseName;
+    }
+
+  /*  public Student getById(int id){
         Student foundStudent = null;
         for (Student s:this.students) {
             if (s.getId() == id){
@@ -59,7 +67,7 @@ public class Course {
             }
         }
         return foundStudent;
-    }
+    }*/
 
     public void getInfoCourse() {
         System.out.println("Nombre de la clase: " + getName());
@@ -73,6 +81,15 @@ public class Course {
     public void addStudentToCourse(String pName, int pSemester, String pCareer, int pAge){
                 students.add(new Student(pName, pSemester, pCareer, pAge) );
     }
+
+  /*  public Teacher addTeacherToCourse(String pName){
+        Teacher teacherFound = null;
+        if (pName.equalsIgnoreCase(teacher.getName())) {
+            teacherFound = getTeacher();
+        }
+        System.out.println(teacherFound);
+        return teacherFound;
+    }*/
 }
 
 

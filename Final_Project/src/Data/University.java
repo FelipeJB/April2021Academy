@@ -80,4 +80,23 @@ public class University {
             System.out.println(studentU.get(i).getName());
         }
     }
+
+   /* public List<String> getCoursesforStudent(int pId){
+        List <String> listCourses = new ArrayList<>();
+        String course = "";
+        for (int i = 0; i < courses.size(); i ++){
+            course = courses.get(i).getStudentFromCourseById(pId);
+            listCourses.add(course);
+        }
+        return listCourses;
+    }*/
+
+    public String getCoursesforStudent(int pId){
+        String course = " ";
+        for (int i = 0; i < courses.size(); i ++){
+            course = courses.get(i).getStudentFromCourseById(pId);
+            System.out.println(course);
+        }
+        return course;
+    }
 }
