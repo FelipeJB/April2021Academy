@@ -1,21 +1,17 @@
 package Data;
 
 public class Person {
-    private int id;
+    private static int count = 0;
+    private int id = 0;
     private int age;
     private String name;
 
 
-    public Person(int id,int age,String name)
+    public Person(int age,String name)
     {
-       this.id=id;
-       this.age=age;
-       this.name=name;
-
-    }
-
-    public Person() {
-
+        this.age=age;
+        this.name=name;
+        id=count++;
     }
 
 

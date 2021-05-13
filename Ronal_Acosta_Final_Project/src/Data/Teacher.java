@@ -6,8 +6,8 @@ public class Teacher extends Person{
     private int activeHoursWeek;
 
 
-    public Teacher(int id,int age, String name,int experienceYears,int activeHoursWeek) {
-        super(id,age,name);
+    public Teacher(int age, String name,int experienceYears,int activeHoursWeek) {
+        super(age,name);
         this.experienceYears = experienceYears;
         this.activeHoursWeek = activeHoursWeek;
         this.baseSalary = 100000;
@@ -17,11 +17,12 @@ public class Teacher extends Person{
     @Override
 public String toString() {
     return "Teacher{" +
-            "name ='" + Teacher.this.getName() + '\'' +
-            ", age =" + Teacher.this.getAge() + '\'' +
-            ", experience years =" + Teacher.this.getExperienceYears() + '\'' +
-            ", active hours per week =" + Teacher.this.getActiveHoursWeek() +
-            ", salary =" + Teacher.this.getSalary(this.activeHoursWeek,this.experienceYears) +
+            " Teacher id = '" + Teacher.this.getId() + '\'' +
+            ", name ='" + Teacher.this.getName() + '\'' +
+            ", age ='" + Teacher.this.getAge() + '\'' +
+            ", experience years ='" + Teacher.this.getExperienceYears() + '\'' +
+            ", active hours per week ='" + Teacher.this.getActiveHoursWeek() + '\'' +
+            ", salary = " + Teacher.this.getSalary(this.activeHoursWeek,this.experienceYears) +
             '}';
 }
 

@@ -2,8 +2,8 @@ package Data;
 
 public class Student extends Person {
 
-    public Student(int id,int age, String name){
-        super(id,age,name);
+    public Student(int age, String name){
+        super(age,name);
 
     }
 
@@ -13,7 +13,8 @@ public class Student extends Person {
     @Override
     public String toString() {
         return "{" +
-                "Student name = '" + Student.this.getName() + '\'' +
+                "Student id = '" + Student.this.getId() + '\'' +
+                ", Student name = '" + Student.this.getName() + '\'' +
                 ", Student age = " + Student.this.getAge() +
                 '}';
     }

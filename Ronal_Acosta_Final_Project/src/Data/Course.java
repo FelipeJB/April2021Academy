@@ -8,48 +8,38 @@ public class Course {
     private String courseName;
     private String assignedClassRoom;
     private int noOfStudents;
-    ArrayList <Student> studentList;
+    ArrayList <Student> courseStudentList;
     private Teacher teacher;
 
     public Course(){
         this.noOfStudents = 0;
         this.courseName = "Not Set";
         this.teacher = null;
-        studentList = new ArrayList<Student>();
+        courseStudentList = new ArrayList<Student>();
     }
+
 
     public Course(String courseName,String assignedClassRoom,int noOfStudents, Teacher teacher)
         {
             this.courseName=courseName;
             this.noOfStudents = noOfStudents;
             this.assignedClassRoom = assignedClassRoom;
-            studentList = new ArrayList<Student>();
+            courseStudentList = new ArrayList<Student>();
             this.teacher = teacher;
         }
 
 
 
     public void addStudent(Student newStudent){
-        if(studentList.size()==noOfStudents){
+        if(courseStudentList.size()==noOfStudents){
             System.out.println("This course is full, you cannot enroll a new Student.");
         }
         else {
-            studentList.add(newStudent);
+            courseStudentList.add(newStudent);
         }
     }
 
 
-
-    /**
-    public boolean addStudent(Student student){
-        if (student==null || studentList.contains(student)) {
-            return false;
-        }
-        studentList.add(student);
-        return true;
-    }
-
-**/
 
     public String getCourseName() {
         return courseName;
@@ -68,12 +58,12 @@ public class Course {
     }
 
 
-    public ArrayList<Student> getStudentList() {
-        return studentList;
+    public ArrayList<Student> getCourseStudentList() {
+        return courseStudentList;
     }
 
-    public void setStudentList(ArrayList<Student> studentList) {
-        this.studentList = studentList;
+    public void setCourseStudentList(ArrayList<Student> courseStudentList) {
+        this.courseStudentList = courseStudentList;
     }
 
 
@@ -82,7 +72,7 @@ public class Course {
     public String toString() {
         return //"{" +
                     " Course name ='" + courseName + '\'' +
-                    ", Number of students = " + studentList.size()  +
+                    ", Number of students = " + courseStudentList.size()  +
                     ", Assigned classroom = " + assignedClassRoom +
                     ", Teacher = " + teacher.getName() +
                     ' ';
@@ -93,7 +83,7 @@ public class Course {
     public String printCourse() {
         return //"{" +
                 " Course name ='" + courseName + '\'' +
-                        ", Students list = " + studentList  +
+                        ", Students list = " + courseStudentList  +
                         ", Assigned classroom = " + assignedClassRoom +
                         ", Teacher = " + teacher.getName() +
                         ' ';
@@ -108,6 +98,24 @@ public class Course {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+
+
+
+    public boolean getStudentFromCourse(int id)
+    {
+        boolean found = false;
+        if (getCourseStudentList().size()==0) {
+            found = false;
+        }else{
+            for(Person s:getCourseStudentList()){
+                if(s.getId()==id){
+                    found=true;
+                }
+            }
+        }
+      return found;
     }
 
 

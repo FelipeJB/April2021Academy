@@ -26,15 +26,8 @@ public class Runner {
 
 
         uni.initialiteTeachers();
-
         uni.initialiteStudents();
         uni.initialiteCourses();
-
-        System.out.println("List of teachers: " +uni.getTeacherList());
-
-        System.out.println("List of students: " +uni.getStudentList());
-
-        System.out.println("List of courses: " +uni.getCourseList());
 
 
         boolean exit = false;
@@ -51,10 +44,11 @@ public class Runner {
             switch (opt) {
                 case 1:
 
-                System.out.println("List of teachers");
+                System.out.println("--List of teachers--");
                 for (int i = 0; i < uni.getTeacherList().size(); i++) {
                     System.out.println(i+1 + "- " + uni.getTeacherList().get(i));
                 }
+                    System.out.print("\n");
 
                 break;
 
@@ -64,7 +58,7 @@ public class Runner {
                 case 2:
 
 
-                    System.out.println("List of Courses");
+                    System.out.println("--List of Courses--");
                     for(int i = 0; i < uni.getCourseList().size(); i++) {
                         System.out.println(i+1 + "- " + uni.getCourseList().get(i));
                     }
@@ -87,9 +81,6 @@ public class Runner {
                     System.out.println("Please enter the age of the Student: ");
                     int age2 = scan.nextBigInteger().intValueExact();
                     scan.nextLine();
-                    System.out.println("Please enter the id of the Student");
-                    int id2 = scan.nextInt();
-                    //scan.nextLine();
 
                     System.out.println("The following are the available courses: ");
                     for (int i=0;i<uni.getCourseList().size();i++) {
@@ -101,36 +92,77 @@ public class Runner {
                     scan.nextLine();
 
 
-                    if (option2 == 1) {
-                        Student newStudent = new Student(id2, age2, name2);
-                        uni.getStudentList().add(newStudent);
-                        uni.getCourseList().get(option2-1).addStudent(newStudent);
-
-                    } else if (option2 == 2) {
-                        Student newStudent = new Student(id2, age2, name2);
-                        uni.getStudentList().add(newStudent);
-                        uni.getCourseList().get(option2-1).addStudent(newStudent);
-
-                    } else if (option2 == 3) {
-                        Student newStudent = new Student(id2, age2, name2);
-                        uni.getStudentList().add(newStudent);
-                        uni.getCourseList().get(option2-1).addStudent(newStudent);
-
-                    }else if (option2 == 4) {
-                        Student newStudent = new Student(id2, age2, name2);
-                        uni.getStudentList().add(newStudent);
-                        uni.getCourseList().get(option2-1).addStudent(newStudent);
-
-                    } else {
+                    for (int i =0; i<uni.getCourseList().size();i++) {
+                        if (option2 == i + 1) {
+                            Student newStudent = new Student(age2, name2);
+                            uni.getCourseStudentList().add(newStudent);
+                            uni.getCourseList().get(option2 - 1).addStudent(newStudent);
+                        } else {
+                        }
                     }
-                    break;
+                        break;
 
                 case 4:
+
+                    System.out.println("Next you must enter all the information of the new course \n");
+                    System.out.println("Please enter the name of the course: ");
+                    scan.nextLine();
+                    String courseName1 = scan.nextLine();
+
+                    System.out.println("Please enter the classroom of the course: ");
+                    //scan.nextLine();
+                    String classroomCourse1 = scan.nextLine();
+
+                    System.out.println("Please enter the maximun number of students of the course: ");
+                    int courseNoOfStudents = scan.nextBigInteger().intValueExact();
+                    scan.nextLine();
+
+                    System.out.println("Now please enter the information of the teacher of the course \n");
+
+                    System.out.println("Please enter the age of the Teacher: ");
+                    int teacherAge = scan.nextBigInteger().intValueExact();
+                    scan.nextLine();
+
+                    System.out.println("Please enter the name of the Teacher: ");
+                    String teacherName = scan.nextLine();
+
+                    System.out.println("Please enter the years of experience of the teacher: ");
+                    int teacherExperienceYears = scan.nextBigInteger().intValueExact();
+                    scan.nextLine();
+
+                    System.out.println("Please enter the active hours per week: ");
+                    int teacherActiveHoursWeek = scan.nextBigInteger().intValueExact();
+                    scan.nextLine();
+
+                    System.out.println("Now please enter the information of the students \n");
+
+                    System.out.println("How many students do you want to add to the course: ");
+                    int numberOfStudents = scan.nextBigInteger().intValueExact();
+                    scan.nextLine();
+
+
+                    Teacher t = uni.createTeacher(teacherAge,teacherName,teacherExperienceYears,teacherActiveHoursWeek);
+                    Course ch = uni.createCourse(courseName1,classroomCourse1,courseNoOfStudents,t);
+
+                    uni.addStudentsToACourse(numberOfStudents,ch);
+
 
                     break;
 
 
                 case 5:
+
+                    System.out.println("Please enter the id of the Student");
+                    int id4 = scan.nextInt();
+                    scan.nextLine();
+                    System.out.println("--Courses in which the student is included--");
+                    for (int i =0;i<uni.getCourseList().size();i++) {
+                        if (uni.getCourseList().get(i).getStudentFromCourse(id4)==true) {
+                            System.out.println("The student is enrolled in: "+ uni.getCourseList().get(i).getCourseName());
+                        } else {
+                            System.out.println("The student is NOT enrolled in: "+ uni.getCourseList().get(i).getCourseName());
+                        }
+                    }
 
                     break;
                 case 6:
