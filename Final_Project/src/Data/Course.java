@@ -70,4 +70,9 @@ public class Course {
         }
     }
 
+    public void addStudentToCourse(String pName, int pSemester, String pCareer, int pAge){
+                students.add(new Student(pName, pSemester, pCareer, pAge) );
+    }
 }
+
+

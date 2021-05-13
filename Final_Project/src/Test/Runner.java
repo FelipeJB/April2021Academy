@@ -5,6 +5,7 @@ import Data.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Runner {
@@ -88,17 +89,24 @@ public class Runner {
                         System.out.println("Por favor digite la edad ");
                         int age = Integer.parseInt(scan.nextLine());
                         scan = new Scanner(System.in);
-                        Student newStudent = new Student(name, semester, career, age);
-                        myUniversity.addStudent(newStudent);
+                        System.out.println("Digite el nombre del curso, donde quiere inscribir al Estudiante "  +
+                                "Matematicas/Biologia/Español/Ingles ");
+                        String courseName = scan.nextLine();
+                        scan = new Scanner(System.in);
+                        for(int i = 0; i < myUniversity.getCourse().size(); i++) {
+                            if(courseName.equalsIgnoreCase(myUniversity.getCourse().get(i).getName())) {
+                                myUniversity.getCourse().get(i).addStudentToCourse(name, semester, career, age);
+                            }
+                        }
                         exitAddStudent = true;
                     }
                     break;
                 case 4:
-                   myUniversity.displayStudents();
-                    break;
+
 
                 case 5:
                     System.out.println("Estas en la opcion cinco");
+                    myUniversity.displayStudents();
                     break;
 
                 default:
