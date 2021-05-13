@@ -5,11 +5,12 @@ import Person.Student;
 import Person.Teacher;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /***
  * @autor   juandaniel.castano@globant.com - ing.daniel.castano@gmail.com
- * @version 1.6
+ * @version 1.8
  * @since   1.0
  */
 public class University {
@@ -17,7 +18,7 @@ public class University {
     private static University main = new University();;
     private final Scanner scan = new Scanner(System.in);
     private int option;
-    private static String message = "It is not a valid option, please try again!";
+    private static String message = "It is not the expected value, please try again!";
 
     public static void main(String[] args){
 
@@ -27,17 +28,18 @@ public class University {
         int counterStudentList;
         int counterClassList;
 
+
         Teacher myTeacher = new Teacher();
 
         try {
             //Indicate the number of Teacher(s), Student(s) and Class(es)
             System.out.println("Please, enter the number of... ");
             System.out.print("Teacher(s): ");
-            int numTeacher = main.scan.nextInt();
+            int numTeacher = validateAndAssignInteger();
             System.out.print("Student(s): ");
-            int numStudent = main.scan.nextInt();
+            int numStudent = validateAndAssignInteger();
             System.out.print("Class(es): ");
-            int numClass = main.scan.nextInt();
+            int numClass = validateAndAssignInteger();
 
             //Add new teacher to a Teacher List
             for (int counterTeacherList = 0; counterTeacherList < numTeacher; counterTeacherList++){
@@ -53,15 +55,14 @@ public class University {
             for (counterClassList = 0; counterClassList < numClass; counterClassList++) {
                 createNewClass(classList, teacherList, studentList, myTeacher, counterClassList);
             }
-            counterClassList++;
 
             printEnterDataSucceed();
             showMenu();
-            main.option = main.scan.nextInt();
+            main.option = validateAndAssignInteger();
 
             while (main.option > 7) {
                 System.out.println(message);
-                main.option = main.scan.nextInt();
+                main.option = validateAndAssignInteger();
             }
 
             if (main.option == 1 || main.option == 2 || main.option == 3 || main.option == 4 || main.option == 5 || main.option == 6) {
@@ -81,10 +82,10 @@ public class University {
                             classCounter++;
                         }
                         System.out.print("What class do you want to see? :");
-                        main.option = main.scan.nextInt();
+                        main.option = validateAndAssignInteger();
                         while (main.option > classCounter) {
                             System.out.println(message);
-                            main.option = main.scan.nextInt();
+                            main.option = validateAndAssignInteger();
                         }
                         System.out.println("\n" + (classList.get(main.option - 1).getName()) + " Class:");
                         System.out.println("\nTeacher: " + (classList.get(main.option - 1).getTeacher().getName()));
@@ -106,7 +107,7 @@ public class University {
                             classCounter++;
                         }
 
-                        main.option = main.scan.nextInt();
+                        main.option = validateAndAssignInteger();
                         classList.get(main.option - 1).getStudentList().add(studentList.get(studentList.size() - 1));
 
                         //Fourth option to Create a new class
@@ -123,7 +124,7 @@ public class University {
                             System.out.println(student.getId() + " " + student.getName() + " " + student.getAge() + " " + student.getScore());
                         }
                         System.out.print("Enter the Student ID that you are looking for: ");
-                        int searchStudent = main.scan.nextInt();
+                        int searchStudent = validateAndAssignInteger();
 
                         System.out.println("Below, It is the Class List so far: ");
                         for (CourseRoom searchByCourse : classList) {
@@ -143,24 +144,28 @@ public class University {
                         do {
 
                             System.out.print("Enter the Student ID that you want to score: ");
-                            int selectStudent = main.scan.nextInt();
+                            int selectStudent = validateAndAssignInteger();
                             for (Student student : studentList) {
                                 if (selectStudent == student.getId()) {
                                     System.out.print("Please, score to the student " + student.getName() + ": ");
-                                    float scoreStudent = main.scan.nextFloat();
+                                    float scoreStudent = validateAndAssignFloat();
                                     student.setScore(scoreStudent);
                                 }
                             }
                             System.out.print("Do you want keep scoring: (Yes/No) ");
-                            keepScoring = main.scan.next();
+                            keepScoring = validateAndAssignString();
+                            while (!(keepScoring.equals("Yes") || keepScoring.equals("No"))){
+                                System.out.print(message + ": ");
+                                keepScoring = validateAndAssignString();
+                            }
                         }while(keepScoring.equals("Yes"));
                     }
                     showMenu();
 
-                    main.option = main.scan.nextInt();
+                    main.option = validateAndAssignInteger();
                     while (main.option > 7) {
                         System.out.println(message);
-                        main.option = main.scan.nextInt();
+                        main.option = validateAndAssignInteger();
                     }
                 } while (main.option != 7);
                 //Sixth option to exit execution off
@@ -199,19 +204,23 @@ public class University {
 
         System.out.println("\nNow, Please insert the data of " + (counterTeacherList + 1) + "° teacher: ");
         System.out.print("Identification: ");
-        int id = main.scan.nextInt();
+        int id = validateAndAssignInteger();
         System.out.print("Name: ");
-        String name = main.scan.next();
+        String name = validateAndAssignString();
         System.out.print("Base Salary: ");
-        double baseSalary = main.scan.nextDouble();
+        double baseSalary = validateAndAssignDouble();
         System.out.print("Experience Year(s): ");
-        int experienceYear = main.scan.nextInt();
+        int experienceYear = validateAndAssignInteger();
         System.out.print("Full Time Labor: Yes/No ");
-        String timeLabor = main.scan.next();
+        String timeLabor = validateAndAssignString();
+        while (!(timeLabor.equals("Yes") || timeLabor.equals("No"))){
+            System.out.print(message + ": ");
+            timeLabor = validateAndAssignString();
+        }
         double finalSalary;
         if (timeLabor.equals("No")) {
             System.out.print("\nSo, indicate how many hours the teacher works per week: ");
-            int workingHour = main.scan.nextInt();
+            int workingHour = validateAndAssignInteger();
             finalSalary = myTeacher.calculatePartTimeLabor(baseSalary, workingHour);
             finalSalary = Math.round(finalSalary * 100.0) / 100.0;
         } else {
@@ -232,11 +241,11 @@ public class University {
     private static ArrayList<Student> createNewStudent(ArrayList<Student> studentList, int counterStudentList){
         System.out.println("\nNow, Please insert the data of " + (counterStudentList + 1) + "° student: ");
         System.out.print("Identification: ");
-        int id = main.scan.nextInt();
+        int id = validateAndAssignInteger();
         System.out.print("Name: ");
-        String name = main.scan.next();
+        String name = validateAndAssignString();
         System.out.print("Age: ");
-        int age = main.scan.nextInt();
+        int age = validateAndAssignInteger();
         float score = 0;
 
         Student student = new Student(id, name, age, score);
@@ -257,12 +266,12 @@ public class University {
     private static ArrayList<CourseRoom> createNewClass(ArrayList<CourseRoom> classList, ArrayList<Teacher> teacherList, ArrayList<Student> studentList, Teacher myTeacher, int counterClassList){
         System.out.println("\nNow, Please insert the data of " + (counterClassList + 1) + "° class: ");
         System.out.print("Identification: ");
-        int id = main.scan.nextInt();
+        int id = validateAndAssignInteger();
         System.out.print("Name: ");
-        String nameClass = main.scan.next();
+        String nameClass = validateAndAssignString();
         //Search for a specific teacher by typing his/her entered ID
         System.out.print("\nPlease, Select teacher by ID to add him/her to this class: ");
-        int selectTeacher = main.scan.nextInt();
+        int selectTeacher = validateAndAssignInteger();
         for (Teacher teacher : teacherList) {
             if (selectTeacher == teacher.getId()) {
                 myTeacher = teacher;
@@ -270,13 +279,13 @@ public class University {
         }
         //Indicate the number of Students per class
         System.out.print("Indicate the number of the students for " + nameClass + " class: ");
-        int numOfStudents = main.scan.nextInt();
+        int numOfStudents = validateAndAssignInteger();
         int studentCounter = 0;
         //Create an Student Array List, fill it out with indicated students
         ArrayList myStudentsList = new ArrayList();
         while (studentCounter < numOfStudents) {
             System.out.print("Select the " + (studentCounter + 1) + "° student by ID to add him/her to this class: ");
-            int selectStudent = main.scan.nextInt();
+            int selectStudent = validateAndAssignInteger();
             for (Student student : studentList) {
                 if (selectStudent == student.getId()) {
                     myStudentsList.add(student);
@@ -298,5 +307,101 @@ public class University {
         System.out.println("\n*******************************************************************");
         System.out.println("*                 DATA HAS BEEN CORRECTLY ENTERED                 *");
         System.out.println("*******************************************************************\n");
+    }
+
+    /***
+     *
+     * @return assignValue
+     */
+    private static int validateAndAssignInteger(){
+        int assignValue = 0;
+        boolean Run = true;
+        while (Run)
+        {
+            Scanner input = new Scanner (System.in);
+            try
+            {
+                assignValue = input.nextInt();
+                Run = false;
+            }
+            catch(InputMismatchException ime)
+            {
+                System.out.println(message);
+                System.out.print("Integer format is expected: ");
+            }
+        }
+        return assignValue;
+    }
+
+    /***
+     *
+     * @return assignValue
+     */
+    private static String validateAndAssignString(){
+        String assignValue = "";
+        boolean Run = true;
+        while (Run)
+        {
+            Scanner input = new Scanner (System.in);
+            try
+            {
+                assignValue = input.next();
+                Run = false;
+            }
+            catch(InputMismatchException ime)
+            {
+                System.out.println(message);
+                System.out.print("String format is expected: ");
+            }
+        }
+        return assignValue;
+    }
+
+    /***
+     *
+     * @return assignValue
+     */
+    private static double validateAndAssignDouble(){
+        double assignValue = 0;
+        boolean Run = true;
+        while (Run)
+        {
+            Scanner input = new Scanner (System.in);
+            try
+            {
+                assignValue = input.nextDouble();
+                Run = false;
+            }
+            catch(InputMismatchException ime)
+            {
+                System.out.println(message);
+                System.out.print("String format is expected: ");
+            }
+        }
+        return assignValue;
+    }
+
+    /***
+     *
+     * @return assignValue
+     */
+    private static float validateAndAssignFloat(){
+        float assignValue = 0;
+        boolean Run = true;
+        while (Run)
+        {
+            Scanner input = new Scanner (System.in);
+            try
+            {
+                assignValue = input.nextFloat();
+                Run = false;
+            }
+            catch(InputMismatchException ime)
+            {
+                System.out.println(message);
+                System.out.print("Float format is expected: ");
+            }
+        }
+        return assignValue;
     }
 }
