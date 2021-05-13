@@ -2,10 +2,15 @@ package Data;
 
 public class Student extends Person {
 
-    private int ID;
-
-    public Student(String name, int age, int ID) {
-        super(name, age);
-        this.ID = ID;
+    public Student(String name, int ID, int age) {
+        super(name, ID, age);
     }
+
+    public Student(){
+    }
+
+    public int getID() {
+        return ID;
+    }
+
 }

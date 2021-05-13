@@ -1,10 +1,18 @@
 package Data;
 
-public class Teacher extends Person {
+public abstract class Teacher extends Person {
 
-    protected double salary;
+    protected double baseSalary;
 
-    public Teacher(String name, int age) {
-        super(name, age);
+    public Teacher(String name, int ID, int age, double baseSalary) {
+        super(name, ID, age);
+        this.baseSalary = baseSalary;
     }
+
+    public double getBaseSalary() {
+        return baseSalary;
+    }
+
+    public abstract double calculateSalary();
+
 }

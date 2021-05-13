@@ -1,25 +1,17 @@
 package Data;
 
-import java.util.Scanner;
 
 public class PartTimeTeacher extends Teacher {
 
-    private double baseSalary;
     private int hoursWeek;
-    Scanner scan = new Scanner(System.in);
 
-    public PartTimeTeacher(String name, int age, double baseSalary, int hoursWeek) {
-        super(name, age);
-        this.baseSalary = baseSalary;
+    public PartTimeTeacher(String name, int ID, int age, double baseSalary, int hoursWeek) {
+        super(name, ID, age, baseSalary);
         this.hoursWeek = hoursWeek;
     }
 
     public double calculateSalary() {
-        System.out.println("Digite la base salarial");
-        baseSalary = scan.nextDouble();
-        System.out.println("Digite las horas por semana");
-        hoursWeek = scan.nextInt();
-        return salary = baseSalary * hoursWeek;
+        return baseSalary * hoursWeek;
     }
 
 }
