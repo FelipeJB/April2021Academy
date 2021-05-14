@@ -1,5 +1,8 @@
 package Runner;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import Data.*;
@@ -9,7 +12,7 @@ public class Main {
 
 
 	@SuppressWarnings("resource")
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
 		University uni = new University();
@@ -17,6 +20,7 @@ public class Main {
 		initializeUniversity(uni);
 
 		Scanner scan = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("//////////////////////////////////////////////");
 		System.out.println("/                                            /");
 		System.out.println("/    Bienvenido al portal de la Universidad  /");
@@ -41,7 +45,7 @@ public class Main {
             switch (option){
             case 1:
             	System.out.println("Lista de profesores: \n");
-            	System.out.println("Nombre      Horas Semanales    Experiencia      Salario");
+            	System.out.println("Nombre      Horas Semanales       Experiencia          Salario");
             	for (int i=0; i < uni.getuTeacher().size();i++) {
         			System.out.println(uni.getuTeacher().get(i).getName()+"       "+uni.getuTeacher().get(i).getHoursPerWeek()+"     "+uni.getuTeacher().get(i).getExperienceYears()+" años     $"+uni.getuTeacher().get(i).getSalary()+"\n");
         		}
@@ -55,8 +59,8 @@ public class Main {
         		}
             	System.out.println("Ingrese la clase que desea ver: \n");
             	int iSub = scan.nextInt();
-            	System.out.println("Nombre   Salon   Profesor \n");
-            	System.out.println(uni.getuSubject().get(iSub-1).getClassName()+"   "+uni.getuSubject().get(iSub-1).getClassRoom()+"   "+uni.getuSubject().get(iSub-1).getTeacherClass());
+            	System.out.println("Nombre       Salon       Profesor \n");
+            	System.out.println(uni.getuSubject().get(iSub-1).getClassName()+"   "+uni.getuSubject().get(iSub-1).getClassRoom()+"   "+uni.getuSubject().get(iSub-1).getTeacherClass().getName());
             	System.out.println("Los estudiantes son: \n");
             	for (int i=0; i < uni.getuSubject().get(iSub-1).getClassStudent().size();i++) {
         			System.out.println(uni.getuSubject().get(iSub-1).getClassStudent().get(i).getName());
@@ -65,10 +69,10 @@ public class Main {
 
             	break;
             case 3:
-            	System.out.println("Ingrese el nombre del nuevo estudiante: ");
-            	String sName = scan.next();
+            	System.out.print("Ingrese el nombre del nuevo estudiante: \n");
+            	String sName = br.readLine();
             	
-            	System.out.println("Ingrese la edad del estudiante");
+            	System.out.print("Ingrese la edad del estudiante: \n");
             	int sAge = scan.nextInt();
             	
             	Student st = new Student(sName, sAge);
@@ -90,44 +94,46 @@ public class Main {
                 break;
             case 4:
             	
-            	System.out.println("Ingrese el nombre de la clase que desea abrir: ");
-            	String nClass = scan.next();
+            	System.out.print("Ingrese el nombre de la clase que desea abrir: \n");
+            	String nClass = br.readLine();
             	
-            	System.out.println("Ingrese el salon de clase a asignar: ");
-            	String nClassRoom = scan.next();
+            	System.out.print("Ingrese el salon de clase a asignar: \n");
+            	String nClassRoom = br.readLine();
             	
-            	System.out.println("De la siguiente lista de docentes elija el que va a dirigir la clase: ");
+            	System.out.print("De la siguiente lista de docentes elija el que va a dirigir la clase: \n");
             	for (int i=0; i < uni.getuTeacher().size();i++) {
         			System.out.println(i+1+". "+uni.getuTeacher().get(i).getName());
         		}
             	int iTeacher = scan.nextInt();
             	Subject sub = new Subject(nClass, nClassRoom, uni.getuTeacher().get(iTeacher-1));
             	
-            	System.out.println("Cuantos estudiantes desea inscribir en la clase: ");
+            	System.out.print("Cuantos estudiantes desea inscribir en la clase: \n");
             	int iSt = scan.nextInt();
             	
-            	System.out.println("De la siguiente lista de estudiantes disponibles seleccione los que desea asignar a la clase: ");
+            	System.out.print("De la siguiente lista de estudiantes disponibles seleccione los que desea asignar a la clase: \n");
             	
             	for (int i=0; i < uni.getuStudent().size();i++) {
         			System.out.println(i+1+".  "+uni.getuStudent().get(i).getName());
         		}
             	for (int j=0; j < iSt; j++) {
-            		System.out.println("Ingrese el numeral del estudiante que desea inscribir en la clase");
+            		System.out.print("Ingrese el numeral del estudiante que desea inscribir en la clase \n");
             		int sNum = scan.nextInt();
             		sub.getClassStudent().add(uni.getuStudent().get(sNum-1));
             				
             	}
             	uni.getuSubject().add(sub);
-            	System.out.println("La clase fue inscrita correctamente");
+            	System.out.print("La clase fue inscrita correctamente \n");
             	
             	
             	break;
             case 5:
-            	System.out.println("De la siguiente lista de estudiantes indique cual quiere consultar: (id)");
+            	System.out.print("De la siguiente lista de estudiantes indique cual quiere consultar: (id) \n");
             	for (int i=0; i < uni.getuStudent().size();i++) {
         			System.out.println(i+1+".  "+uni.getuStudent().get(i).getId()+"    "+uni.getuStudent().get(i).getName());
         		}
             	int sId = scan.nextInt();
+            	
+            	System.out.println("El estudiante se encuentra en las siguientes clases: \n");
             	
             	for (int i=0; i < uni.getuSubject().size();i++) {
             		for (int j=0; j < uni.getuSubject().get(i).getClassStudent().size(); j++) {
@@ -142,7 +148,7 @@ public class Main {
             	break;
             default:
                 exit = true;
-                System.out.println("Gracias por utilizar nuestro portal! Vuelva pronto\n");
+                System.out.print("Gracias por utilizar nuestro portal! Vuelva pronto \n");
                 break;
             }
 
