@@ -1,5 +1,7 @@
 package Data;
 
+import java.math.BigDecimal;
+
 public class Teacher extends Person {
 	
 
@@ -100,11 +102,11 @@ public class Teacher extends Person {
 
 
 
-	public double getSalary() {
+	public String getSalary() {
 		if(this.fullTime == true) {
-			return this.baseSalary*this.experienceYears*1.1;
+			return String.format("%.0f", (this.baseSalary*this.experienceYears*1.1)) ;
 		}else {
-			return this.baseSalary*this.hoursPerWeek;
+			return String.format("%.0f", (this.baseSalary*this.hoursPerWeek));
 		}
 
 	}

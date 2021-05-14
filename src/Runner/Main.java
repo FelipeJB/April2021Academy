@@ -47,7 +47,7 @@ public class Main {
             	System.out.println("Lista de profesores: \n");
             	System.out.println("Nombre      Horas Semanales       Experiencia          Salario");
             	for (int i=0; i < uni.getuTeacher().size();i++) {
-        			System.out.println(uni.getuTeacher().get(i).getName()+"       "+uni.getuTeacher().get(i).getHoursPerWeek()+"     "+uni.getuTeacher().get(i).getExperienceYears()+" años     $"+uni.getuTeacher().get(i).getSalary()+"\n");
+        			System.out.println(uni.getuTeacher().get(i).getName()+"       "+uni.getuTeacher().get(i).getHoursPerWeek()+"             "+uni.getuTeacher().get(i).getExperienceYears()+" años            $"+uni.getuTeacher().get(i).getSalary()+"\n");
         		}
             	
                 
