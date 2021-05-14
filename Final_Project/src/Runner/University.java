@@ -10,25 +10,25 @@ import java.util.Scanner;
 
 /***
  * @autor   juandaniel.castano@globant.com - ing.daniel.castano@gmail.com
- * @version 1.9
+ * @version 2.0
  * @since   1.0
  */
 public class University {
 
     private static final University main = new University();;
-    private final Scanner scan = new Scanner(System.in);
+    //private final Scanner scan = new Scanner(System.in);
     private int option;
     private static final String message = "It is not the expected value, please try again!";
-    private static final String existingDataMessage = "Data already exists, Make other choice!";
 
     public static void main(String[] args){
-
+        //Define the list for each object
         ArrayList<Teacher> teacherList = new ArrayList<>();
         ArrayList<Student> studentList = new ArrayList<>();
         ArrayList<CourseRoom> classList = new ArrayList<>();
         int counterStudentList;
         int counterClassList;
 
+        //Instantiate the Teacher class
         Teacher myTeacher = new Teacher();
 
         try {
@@ -67,11 +67,12 @@ public class University {
             for (counterClassList = 0; counterClassList < numClass; counterClassList++) {
                 createNewClass(classList, teacherList, studentList, myTeacher, counterClassList);
             }
-
+            //Print message when data has been entered as it is expected
             printEnterDataSucceed();
+            //Display the main menu
             showMenu();
             main.option = validateAndAssignInteger();
-
+            //Validate the data entered
             while (main.option > 7) {
                 System.out.println(message);
                 main.option = validateAndAssignInteger();
@@ -82,13 +83,12 @@ public class University {
                     //First option to Print all professors
                     if (main.option == 1) {
                         //Print the teacher(s) that have been added
-                        for (Teacher teacher : teacherList) {
-                            System.out.println((teacher.getId()) + "  " + (teacher.getName()) + "  " + (teacher.getBaseSalary()) + "  " + (teacher.getExperienceYear()) + "  " + (teacher.getTimeLabor()));
-                        }
-                        System.out.println("");
+                        teacherList.forEach((n) -> { System.out.println((n.getId()) + "  " + (n.getName()) + "  " + (n.getBaseSalary()) + "  " + (n.getExperienceYear()) + "  " + (n.getTimeLabor())); });
+
                         //Second option to Print all class(es) that have been added
                     } else if (main.option == 2) {
                         int classCounter = 1;
+
                         for (CourseRoom courseRoom : classList) {
                             System.out.println("(" + classCounter + "). " + (courseRoom.getIdClass()) + " " + (courseRoom.getName()));
                             classCounter++;
@@ -124,7 +124,7 @@ public class University {
                         //Fourth option to Create a new class
                     } else if (main.option == 4) {
                         //Create a new Class
-                        System.out.println("\n--- NEW STUDENT ---");
+                        System.out.println("\n--- NEW CLASS ---");
                         createNewClass(classList, teacherList, studentList, myTeacher, counterClassList);
                         counterClassList++;
 
@@ -132,9 +132,8 @@ public class University {
                     } else if (main.option == 5){
                         //List All Classes
                         System.out.println("Below, It is the Student list so far: ");
-                        for (Student student : studentList) {
-                            System.out.println(student.getId() + " " + student.getName() + " " + student.getAge() + " " + student.getScore());
-                        }
+                        studentList.forEach((n) -> { System.out.println(n.getId() + " " + n.getName() + " " + n.getAge() + " " + n.getScore()); });
+
                         System.out.print("Enter the Student ID that you are looking for: ");
                         int searchStudent = validateAndAssignInteger();
 
@@ -148,10 +147,9 @@ public class University {
                         }
 
                     }else{
+                        //Print the current Student List
                         System.out.println("Below, It is the Student list so far: ");
-                        for (Student student : studentList) {
-                            System.out.println(student.getId() + " " + student.getName() + " " + student.getAge() + " " + student.getScore());
-                        }
+                        studentList.forEach((n) -> { System.out.println(n.getId() + " " + n.getName() + " " + n.getAge() + " " + n.getScore()); });
                         String keepScoring = "Yes";
                         do {
 
@@ -174,7 +172,7 @@ public class University {
                         }while(keepScoring.equals("Yes"));
                     }
                     showMenu();
-
+                    //Validate the data entered
                     main.option = validateAndAssignInteger();
                     while (main.option > 7) {
                         System.out.println(message);
@@ -196,7 +194,7 @@ public class University {
      */
     private static void showMenu() {
         System.out.println("""
-                        What do you want to do next? (Please, Make a choice)
+                        \nWhat do you want to do next? (Please, Make a choice)
                         (1). Print all the Professors.
                         (2). Print all the Classes.
                         (3). Create a new Student.
@@ -213,7 +211,6 @@ public class University {
      * @param counterTeacherList
      */
     private static void createNewTeacher(Teacher myTeacher, ArrayList<Teacher> teacherList, int counterTeacherList){
-
         System.out.println("\nNow, Please insert the data of " + (counterTeacherList + 1) + "° teacher: ");
         System.out.print("Identification: ");
         int id = validateAndAssignInteger();
