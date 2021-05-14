@@ -44,7 +44,14 @@ public class Teacher extends Person{
         this.experienceYear = experienceYear;
     }
 
-    public String getTimeLabor() { return timeLabor; }
+    public String getTimeLabor() {
+        if(timeLabor.equals("Yes")){
+            timeLabor = "Full-Time Labor";
+        } else{
+            timeLabor = "Part-Time Labor";
+        }
+        return timeLabor;
+    }
 
     public void setTimeLabor(String timeLabor) {
         this.timeLabor = timeLabor;
@@ -64,10 +71,7 @@ public class Teacher extends Person{
      */
     //Method to calculate salary when the teacher work full time
     public double calculateFullTimeLabor(double baseSalary, int experienceYear){
-        for(int i = 1; i <= experienceYear; i++){
-            salaryFullTime = salaryFullTime + (baseSalary * 0.1);
-        }
-        return salaryFullTime = baseSalary + salaryFullTime;
+        return  salaryFullTime = baseSalary + (baseSalary * 0.1 * experienceYear);
     }
 
     /***
@@ -77,7 +81,5 @@ public class Teacher extends Person{
      * @return salaryPartTime
      */
     //Method to calculate salary when the teacher work part time
-    public double calculatePartTimeLabor(double baseSalary, int workingHour){
-        return (baseSalary/240) * workingHour;
-    }
+    public double calculatePartTimeLabor(double baseSalary, int workingHour){ return (baseSalary/160) * (workingHour * 4); }
 }

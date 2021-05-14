@@ -10,15 +10,16 @@ import java.util.Scanner;
 
 /***
  * @autor   juandaniel.castano@globant.com - ing.daniel.castano@gmail.com
- * @version 1.8
+ * @version 1.9
  * @since   1.0
  */
 public class University {
 
-    private static University main = new University();;
+    private static final University main = new University();;
     private final Scanner scan = new Scanner(System.in);
     private int option;
-    private static String message = "It is not the expected value, please try again!";
+    private static final String message = "It is not the expected value, please try again!";
+    private static final String existingDataMessage = "Data already exists, Make other choice!";
 
     public static void main(String[] args){
 
@@ -28,7 +29,6 @@ public class University {
         int counterStudentList;
         int counterClassList;
 
-
         Teacher myTeacher = new Teacher();
 
         try {
@@ -36,10 +36,22 @@ public class University {
             System.out.println("Please, enter the number of... ");
             System.out.print("Teacher(s): ");
             int numTeacher = validateAndAssignInteger();
+            while(numTeacher <= 0){
+                System.out.println(message);
+                numTeacher = validateAndAssignInteger();
+            }
             System.out.print("Student(s): ");
             int numStudent = validateAndAssignInteger();
+            while(numStudent <= 0){
+                System.out.println(message);
+                numStudent = validateAndAssignInteger();
+            }
             System.out.print("Class(es): ");
             int numClass = validateAndAssignInteger();
+            while(numClass <= 0){
+                System.out.println(message);
+                numClass = validateAndAssignInteger();
+            }
 
             //Add new teacher to a Teacher List
             for (int counterTeacherList = 0; counterTeacherList < numTeacher; counterTeacherList++){
@@ -91,14 +103,13 @@ public class University {
                         System.out.println("\nTeacher: " + (classList.get(main.option - 1).getTeacher().getName()));
                         for (int i = 0; i < classList.get(main.option - 1).getStudentList().size(); i++) {
                             System.out.println((i + 1) + "° Student:");
-                            System.out.println((classList.get(main.option - 1).getStudentList().get(i).getId()) + " " + (classList.get(main.option - 1).getStudentList().get(i).getName()) + " " + (classList.get(main.option - 1).getStudentList().get(i).getAge()));
+                            System.out.println("\t" + (classList.get(main.option - 1).getStudentList().get(i).getId()) + " " + (classList.get(main.option - 1).getStudentList().get(i).getName()) + " " + (classList.get(main.option - 1).getStudentList().get(i).getAge()));
                         }
 
                         //Third option to Create a new student
                     } else if (main.option == 3) {
                         System.out.println("\n--- NEW STUDENT ---");
                         createNewStudent(studentList, counterStudentList);
-                        counterStudentList++;
 
                         System.out.println("\nNow, What class do you want to add the student to? ");
                         int classCounter = 1;
@@ -113,6 +124,7 @@ public class University {
                         //Fourth option to Create a new class
                     } else if (main.option == 4) {
                         //Create a new Class
+                        System.out.println("\n--- NEW STUDENT ---");
                         createNewClass(classList, teacherList, studentList, myTeacher, counterClassList);
                         counterClassList++;
 
@@ -130,7 +142,7 @@ public class University {
                         for (CourseRoom searchByCourse : classList) {
                             for (int i = 0; i < searchByCourse.getStudentList().size(); i++) {
                                 if (searchStudent == searchByCourse.getStudentList().get(i).getId()) {
-                                    System.out.println(searchByCourse.getName());
+                                    System.out.println("\n" + searchByCourse.getName());
                                 }
                             }
                         }
@@ -145,6 +157,7 @@ public class University {
 
                             System.out.print("Enter the Student ID that you want to score: ");
                             int selectStudent = validateAndAssignInteger();
+
                             for (Student student : studentList) {
                                 if (selectStudent == student.getId()) {
                                     System.out.print("Please, score to the student " + student.getName() + ": ");
@@ -198,9 +211,8 @@ public class University {
      * @param myTeacher
      * @param teacherList
      * @param counterTeacherList
-     * @return teacherList
      */
-    private static ArrayList<Teacher> createNewTeacher(Teacher myTeacher, ArrayList<Teacher> teacherList, int counterTeacherList){
+    private static void createNewTeacher(Teacher myTeacher, ArrayList<Teacher> teacherList, int counterTeacherList){
 
         System.out.println("\nNow, Please insert the data of " + (counterTeacherList + 1) + "° teacher: ");
         System.out.print("Identification: ");
@@ -229,29 +241,26 @@ public class University {
         Teacher teacher = new Teacher(id, name, finalSalary, experienceYear, timeLabor);
         teacherList.add(teacher);
 
-        return teacherList;
     }
 
     /***
      *
      * @param studentList
      * @param counterStudentList
-     * @return studentList
      */
-    private static ArrayList<Student> createNewStudent(ArrayList<Student> studentList, int counterStudentList){
+    private static void createNewStudent(ArrayList<Student> studentList, int counterStudentList){
         System.out.println("\nNow, Please insert the data of " + (counterStudentList + 1) + "° student: ");
         System.out.print("Identification: ");
+        boolean dataGranted = false;
         int id = validateAndAssignInteger();
         System.out.print("Name: ");
         String name = validateAndAssignString();
         System.out.print("Age: ");
         int age = validateAndAssignInteger();
         float score = 0;
-
         Student student = new Student(id, name, age, score);
         studentList.add(student);
 
-        return studentList;
     }
 
     /***
@@ -261,9 +270,8 @@ public class University {
      * @param studentList
      * @param myTeacher
      * @param counterClassList
-     * @return classList
      */
-    private static ArrayList<CourseRoom> createNewClass(ArrayList<CourseRoom> classList, ArrayList<Teacher> teacherList, ArrayList<Student> studentList, Teacher myTeacher, int counterClassList){
+    private static void createNewClass(ArrayList<CourseRoom> classList, ArrayList<Teacher> teacherList, ArrayList<Student> studentList, Teacher myTeacher, int counterClassList) {
         System.out.println("\nNow, Please insert the data of " + (counterClassList + 1) + "° class: ");
         System.out.print("Identification: ");
         int id = validateAndAssignInteger();
@@ -282,7 +290,7 @@ public class University {
         int numOfStudents = validateAndAssignInteger();
         int studentCounter = 0;
         //Create an Student Array List, fill it out with indicated students
-        ArrayList myStudentsList = new ArrayList();
+        ArrayList<Student> myStudentsList = new ArrayList<>();
         while (studentCounter < numOfStudents) {
             System.out.print("Select the " + (studentCounter + 1) + "° student by ID to add him/her to this class: ");
             int selectStudent = validateAndAssignInteger();
@@ -297,7 +305,6 @@ public class University {
         CourseRoom courseRoom = new CourseRoom(id, nameClass, myTeacher, myStudentsList);
         classList.add(courseRoom);
 
-        return classList;
     }
 
     /***
@@ -404,4 +411,5 @@ public class University {
         }
         return assignValue;
     }
+
 }

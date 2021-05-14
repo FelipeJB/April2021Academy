@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class CourseRoom extends ClassRoom{
 
-    private ArrayList<Student> studentList = new ArrayList<>();
-    Teacher teacher = new Teacher();
+    private ArrayList<Student> studentList;
+    private Teacher teacher;
 
     //Defined Constructor
     public CourseRoom(int idClass, String name, Teacher teacher, ArrayList studentList){
