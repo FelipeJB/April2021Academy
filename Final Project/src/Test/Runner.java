@@ -107,8 +107,8 @@ public class Runner {
                                 teacherCourse = myUniversity.getTeacher().get(i);
                             }
                         }
-                        System.out.println("Digite el ID del Estudiante, que desea agregar a la clase "  +
-                                "1/2/3/4/5/6/7 ");
+                        System.out.println("Digite el ID del Estudiante, que desea agregar a la clase ");
+                        myUniversity.displayStudents();
                         int studentId = Integer.parseInt(scan.nextLine());
                         scan = new Scanner(System.in);
                         List<Student> studentCourse = null;
@@ -130,11 +130,6 @@ public class Runner {
                         myUniversity.displayStudents();
                         int studentId = Integer.parseInt(scan.nextLine());
                         scan = new Scanner(System.in);
-                        /*String totalCourses = "";
-                        for (int i = 0; i < myUniversity.getCourse().size(); i ++) {
-                           System.out.println(myUniversity.getCourse().get(i).getStudentFromCourseById(studentId));
-                            //System.out.println(myUniversity.getCourse().get(i).getById(studentId));
-                        }*/
                         System.out.println(myUniversity.getCoursesforStudent(studentId));
                         exitIncludeStudent = true;
                     }
