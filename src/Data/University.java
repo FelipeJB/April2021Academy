@@ -6,6 +6,10 @@ public class University {
 	private ArrayList<Student> uStudent = new ArrayList<>();
 	private ArrayList<Teacher> uTeacher = new ArrayList<>();
 	private ArrayList<Subject> uSubject = new ArrayList<>();
+	
+	public University() {
+		
+	}
 	/**
 	 * @return the uStudent
 	 */

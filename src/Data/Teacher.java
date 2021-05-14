@@ -25,7 +25,7 @@ public class Teacher extends Person {
 		this.fullTime = fullTime;
 	}
 
-
+	
 
 	
 	/**
@@ -100,7 +100,7 @@ public class Teacher extends Person {
 
 
 
-	protected double getSalary() {
+	public double getSalary() {
 		if(this.fullTime == true) {
 			return this.baseSalary*this.experienceYears*1.1;
 		}else {
