@@ -88,6 +88,58 @@ public class Main {
             	
                
                 break;
+            case 4:
+            	
+            	System.out.println("Ingrese el nombre de la clase que desea abrir: ");
+            	String nClass = scan.next();
+            	
+            	System.out.println("Ingrese el salon de clase a asignar: ");
+            	String nClassRoom = scan.next();
+            	
+            	System.out.println("De la siguiente lista de docentes elija el que va a dirigir la clase: ");
+            	for (int i=0; i < uni.getuTeacher().size();i++) {
+        			System.out.println(i+1+". "+uni.getuTeacher().get(i).getName());
+        		}
+            	int iTeacher = scan.nextInt();
+            	Subject sub = new Subject(nClass, nClassRoom, uni.getuTeacher().get(iTeacher-1));
+            	
+            	System.out.println("Cuantos estudiantes desea inscribir en la clase: ");
+            	int iSt = scan.nextInt();
+            	
+            	System.out.println("De la siguiente lista de estudiantes disponibles seleccione los que desea asignar a la clase: ");
+            	
+            	for (int i=0; i < uni.getuStudent().size();i++) {
+        			System.out.println(i+1+".  "+uni.getuStudent().get(i).getName());
+        		}
+            	for (int j=0; j < iSt; j++) {
+            		System.out.println("Ingrese el numeral del estudiante que desea inscribir en la clase");
+            		int sNum = scan.nextInt();
+            		sub.getClassStudent().add(uni.getuStudent().get(sNum-1));
+            				
+            	}
+            	uni.getuSubject().add(sub);
+            	System.out.println("La clase fue inscrita correctamente");
+            	
+            	
+            	break;
+            case 5:
+            	System.out.println("De la siguiente lista de estudiantes indique cual quiere consultar: (id)");
+            	for (int i=0; i < uni.getuStudent().size();i++) {
+        			System.out.println(i+1+".  "+uni.getuStudent().get(i).getId()+"    "+uni.getuStudent().get(i).getName());
+        		}
+            	int sId = scan.nextInt();
+            	
+            	for (int i=0; i < uni.getuSubject().size();i++) {
+            		for (int j=0; j < uni.getuSubject().get(i).getClassStudent().size(); j++) {
+            			if(uni.getuSubject().get(i).getClassStudent().get(j).getId() == sId) {
+            				System.out.println(uni.getuSubject().get(i).getClassName());
+            			}
+                			
+            		}
+            		
+        		}
+            	
+            	break;
             default:
                 exit = true;
                 System.out.println("Gracias por utilizar nuestro portal! Vuelva pronto\n");
@@ -148,5 +200,7 @@ public class Main {
 		u.getuSubject().add(sub3);
 		u.getuSubject().add(sub4);
 	}
+	
+
 
 }

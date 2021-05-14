@@ -14,7 +14,7 @@ public class Person {
 	/**
 	 * @return the id
 	 */
-	protected int getId() {
+	public int getId() {
 		return id;
 	}
 
