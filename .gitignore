@@ -1,4 +1,3 @@
-
-FinalProject/.idea/
-FinalProject/out/
+.idea/*
+out/*
 *.iml
