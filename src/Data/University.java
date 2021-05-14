@@ -90,18 +90,6 @@ public class University {
         }
     }
 
-    public Teacher addTeachertoCourse(String nameTeacher) { //Probar mañana para arreglar opcion 5
-        Teacher teacherTemporal = null;
-        for (int i = 0; i < teachers.size(); i++) {
-            teacherTemporal = teachers.get(i);
-            if (teacherTemporal.getName().equalsIgnoreCase(nameTeacher)){
-                teacherTemporal = teachers.get(i);
-                }
-            }
-        return teacherTemporal;
-        }
-
-
     public String getCoursesforStudent(int pId) {
         String course = "";
         String allCourses = "";
