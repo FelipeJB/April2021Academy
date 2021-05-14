@@ -14,6 +14,7 @@ public class Runner {
         String fullName;
         int id;
         int age;
+        int roomNumber;
 
         System.out.println("Menu de administración universitaria");
         do{
@@ -55,9 +56,5 @@ public class Runner {
                 }
         }
         while (option != 0);
-
-
-        System.out.println(assignation.teacherListAssignation());
-
     }
 }

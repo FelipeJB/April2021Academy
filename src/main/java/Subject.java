@@ -3,8 +3,8 @@ import java.util.List;
 
 public class Subject {
 
-    protected int roomNumber;
-    protected String subjectName;
+    protected static int roomNumber;
+    protected static String subjectName;
 
     public Subject (int roomNumber, String subjectName){
         this.roomNumber = roomNumber;
@@ -17,5 +17,13 @@ public class Subject {
 
     public  int getRoomNumber(){
         return roomNumber;
+    }
+
+    public static void setRoomNumber(int roomNumber) {
+        Subject.roomNumber = roomNumber;
+    }
+
+    public static void setSubjectName(String subjectName) {
+        Subject.subjectName = subjectName;
     }
 }

@@ -1,11 +1,13 @@
-public abstract class Person {
+public abstract class Person<Static> {
+
+    protected static int id;
     protected String firstName;
     protected String lastName;
     protected String fullName;
-    protected int id;
+    //protected int id;
     protected int age;
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 

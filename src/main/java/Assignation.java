@@ -23,6 +23,36 @@ public class Assignation {
     Subject subject4 = new Subject(401, "Quantum Physics");
     List<Subject> subjectsList = new ArrayList<>();
 
+    List<Integer> course1 = new ArrayList<>();
+    public void setCourse1(List<Integer> course1) {
+        course1.add(Subject.roomNumber);
+        course1.add(Teacher.getId());
+        course1.add(Student.getId());
+    }
+
+    List<Integer> course2 = new ArrayList<>();
+    public void setCourse2(List<Integer> course2) {
+        course2.add(Subject.roomNumber);
+        course2.add(Teacher.getId());
+        course2.add(Student.getId());
+    }
+
+    List<Integer> course3 = new ArrayList<>();
+    public void setCourse3(List<Integer> course3){
+        course3.add(Subject.roomNumber);
+        course3.add(Teacher.getId());
+        course3.add(Student.getId());
+    }
+
+    List<Integer> course4 = new ArrayList<>();
+    public void setCourse4(List<Integer> course3){
+        course4.add(Subject.roomNumber);
+        course4.add(Teacher.getId());
+        course4.add(Student.getId());
+    }
+
+    List<Integer> courseList = new ArrayList<>();
+
     public Assignation (){}
 
     public List<Teacher> teacherListAssignation (){
@@ -51,7 +81,23 @@ public class Assignation {
         return subjectsList;
     }
 
+    public void courseListAssignation(int newCourse){
+        courseList.add(newCourse);
+    }
+
     public void addStudentToList(Student newStudent){
         studentList.add(newStudent);
+    }
+
+    public void addSubjectToList (Subject newSubject){
+        subjectsList.add(newSubject);
+    }
+
+    public void createCourse (int newCourse){
+        courseList.add(newCourse);
+    }
+
+    public void addStudentToCourse (int newStudent){
+
     }
 }
