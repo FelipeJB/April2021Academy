@@ -15,9 +15,14 @@ public class Course {
      teacher = iteacher;
      courseStudents = icourseStudents;
     }
+
+    public void set1NewStudentoCourse(Student inewStudent){
+        courseStudents.add(inewStudent);
+    }
+
     //How to find an student by id in the list of courses
-    private boolean isStudentInTheCourse(int id){
-        // foreach - para iterar en listas
+    public boolean isStudentInTheCourse(int id){
+        // foreach
         for(Student s:this.courseStudents){
             if(s.getStudentId() == id){
                 return true;

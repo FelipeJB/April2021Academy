@@ -1,7 +1,6 @@
 package Data;
 
 public class FullTimeTeacher extends Teacher {
-
     private Double yearsOfExperience;
 
     public FullTimeTeacher(String iteacherName,Double iyearsOfExperience){
