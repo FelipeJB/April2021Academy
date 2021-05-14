@@ -76,27 +76,44 @@ public class University {
 
     public void displayStudents() {
         for (int i = 0; i < studentU.size(); i++) {
-            System.out.print(studentU.get(i).getId()+ " ");
+            System.out.print(studentU.get(i).getId() + " ");
             System.out.println(studentU.get(i).getName());
         }
     }
 
-   /* public List<String> getCoursesforStudent(int pId){
-        List <String> listCourses = new ArrayList<>();
-        String course = "";
-        for (int i = 0; i < courses.size(); i ++){
-            course = courses.get(i).getStudentFromCourseById(pId);
-            listCourses.add(course);
+    public void addStudenttoCourse(Student student, String nameCourse) {
+        for (int i = 0; i < courses.size(); i++) {
+            Course courseTemporal = courses.get(i);
+            if (courseTemporal.getName().equalsIgnoreCase(nameCourse)) {
+                courseTemporal.addStudentToCourse(student);
+            }
         }
-        return listCourses;
-    }*/
+    }
 
-    public String getCoursesforStudent(int pId){
-        String course = " ";
-        for (int i = 0; i < courses.size(); i ++){
-            course = courses.get(i).getStudentFromCourseById(pId);
-            System.out.println(course);
+    public Teacher addTeachertoCourse(String nameTeacher) { //Probar mañana para arreglar opcion 5
+        Teacher teacherTemporal = null;
+        for (int i = 0; i < teachers.size(); i++) {
+            teacherTemporal = teachers.get(i);
+            if (teacherTemporal.getName().equalsIgnoreCase(nameTeacher)){
+                teacherTemporal = teachers.get(i);
+                }
+            }
+        return teacherTemporal;
         }
-        return course;
+
+
+    public String getCoursesforStudent(int pId) {
+        String course = "";
+        String allCourses = "";
+        for (int i = 0; i < courses.size(); i++) {
+            if(courses.get(i).getStudentFromCourseById(pId) != 0){
+                course = courses.get(i).getName();
+                allCourses = allCourses + " - " + course;
+            }
+        }
+        if (allCourses == "") {
+            System.out.println("El estudiante no esta asignado a ninguna clase");
+        }
+        return allCourses;
     }
 }

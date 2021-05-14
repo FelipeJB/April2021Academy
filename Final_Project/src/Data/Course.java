@@ -49,25 +49,17 @@ public class Course {
         this.teacher = teacher;
     }
 
-    public String getStudentFromCourseById(int id){
-        String courseName = "";
-        for (Student s:this.students) {
-            if (s.getId() == id){
-                courseName = name;
+    public int getStudentFromCourseById(int id){
+        int foundIdStudent = 0;
+        boolean foundStudend = false;
+        for (int i = 0; i < students.size() && !foundStudend; i++) {
+            if (students.get(i).getId() == id){
+                foundIdStudent = students.get(i).getId();
+                foundStudend = true;
             }
         }
-        return courseName;
+        return foundIdStudent;
     }
-
-  /*  public Student getById(int id){
-        Student foundStudent = null;
-        for (Student s:this.students) {
-            if (s.getId() == id){
-                foundStudent = s;
-            }
-        }
-        return foundStudent;
-    }*/
 
     public void getInfoCourse() {
         System.out.println("Nombre de la clase: " + getName());
@@ -78,18 +70,18 @@ public class Course {
         }
     }
 
-    public void addStudentToCourse(String pName, int pSemester, String pCareer, int pAge){
-                students.add(new Student(pName, pSemester, pCareer, pAge) );
+    public void addStudentToCourse(Student student){
+                students.add(student);
     }
 
-  /*  public Teacher addTeacherToCourse(String pName){
+  public Teacher addTeacherToCourse(String pName){
         Teacher teacherFound = null;
         if (pName.equalsIgnoreCase(teacher.getName())) {
             teacherFound = getTeacher();
         }
         System.out.println(teacherFound);
         return teacherFound;
-    }*/
+    }
 }
 
 

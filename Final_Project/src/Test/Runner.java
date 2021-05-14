@@ -43,41 +43,16 @@ public class Runner {
                     break;
                 case 2:
                     String answer;
-
-                    do {
                         System.out.println("**************************************CURSOS***********************************");
                         System.out.println("Esta es la lista de Cursos. Para conocer el detalle escriba el número del curso");
                         myUniversity.displayCourses();
                         System.out.println("*******************************************************************************");
                         int optionCourse = scan.nextInt();
-
-                            switch (optionCourse) {
-                                case 1:
-                                    myUniversity.getCourse().get(0).getInfoCourse();
-                                    //System.out.println("Desea consultar otro curso?: Digite Si/No ");
-                                    //String name = scan.nextLine();
-                                    //scan = new Scanner(System.in);
-                                    break;
-                                case 2:
-                                    myUniversity.getCourse().get(1).getInfoCourse();
-                                    break;
-                                case 3:
-                                    myUniversity.getCourse().get(2).getInfoCourse();
-                                    break;
-                                case 4:
-                                    myUniversity.getCourse().get(3).getInfoCourse();
-                                    break;
-                                case 5:
-                                    myUniversity.getCourse().get(4).getInfoCourse();
-                                    break;
-                                default:
-                                    exit = true;
-                                    break;
-                            }
-                        System.out.println("Desea consultar otro curso?: Digite Si/No ");
-                        answer = scan.nextLine();
-
-                    } while (answer.equalsIgnoreCase("Si"));   // Por que no me deja la opcion de escribir la respuesta
+                        if(optionCourse-1 < myUniversity.getCourse().size()) {
+                            myUniversity.getCourse().get(optionCourse - 1).getInfoCourse();
+                        } else{
+                            System.out.println("Lo siento ese curso no existe");
+                        }
                     break;
 
                 case 3:
@@ -101,15 +76,13 @@ public class Runner {
                         System.out.println("Por favor digite la edad ");
                         int age = Integer.parseInt(scan.nextLine());
                         scan = new Scanner(System.in);
-                        System.out.println("Digite el nombre del curso, donde quiere inscribir al Estudiante "  +
-                                "Matematicas/Biologia/Español/Ingles ");
+                        System.out.println("Digite el nombre del curso, donde quiere inscribir al Estudiante ");
+                        myUniversity.displayCourses();
                         String courseName = scan.nextLine();
                         scan = new Scanner(System.in);
-                        for(int i = 0; i < myUniversity.getCourse().size(); i++) {
-                            if(courseName.equalsIgnoreCase(myUniversity.getCourse().get(i).getName())) {
-                                myUniversity.getCourse().get(i).addStudentToCourse(name, semester, career, age);
-                            }
-                        }
+                        Student studentTemporal = new Student(name, semester, career, age);
+                        myUniversity.addStudent(studentTemporal);
+                        myUniversity.addStudenttoCourse(studentTemporal, courseName);
                         exitAddStudent = true;
                     }
                     break;
@@ -134,10 +107,6 @@ public class Runner {
                                 teacherCourse = myUniversity.getTeacher().get(i);
                             }
                         }
-                     /*  for(i = 0; i < myUniversity.getTeacher().size(); i++){
-                           teacherCourse = myUniversity.getCourse().get(i).addTeacherToCourse(teacherName);
-                           System.out.println(teacherCourse);
-                       }*/
                         System.out.println("Digite el ID del Estudiante, que desea agregar a la clase "  +
                                 "1/2/3/4/5/6/7 ");
                         int studentId = Integer.parseInt(scan.nextLine());
@@ -212,8 +181,8 @@ public class Runner {
     public static void initializeCourses(University university){
        Course math = new Course("Matematicas", 200, university.getTeacher().get(0), new ArrayList<>(Arrays.asList(university.getStudentU().get(0), university.getStudentU().get(1))));
        Course biology = new Course("Biologia", 201, university.getTeacher().get(1), new ArrayList<>(Arrays.asList(university.getStudentU().get(2), university.getStudentU().get(3))));
-       Course spanish = new Course("Español", 202, university.getTeacher().get(2), new ArrayList<>(Arrays.asList(university.getStudentU().get(4), university.getStudentU().get(5))));
-       Course english = new Course("Ingles", 203, university.getTeacher().get(3), new ArrayList<>(Arrays.asList(university.getStudentU().get(6))));
+       Course spanish = new Course("Español", 202, university.getTeacher().get(2), new ArrayList<>(Arrays.asList(university.getStudentU().get(2), university.getStudentU().get(5))));
+       Course english = new Course("Ingles", 203, university.getTeacher().get(3), new ArrayList<>(Arrays.asList(university.getStudentU().get(2))));
 
         university.addCourse(math);
         university.addCourse(biology);
