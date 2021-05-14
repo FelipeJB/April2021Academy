@@ -1,11 +1,11 @@
 package Data;
 
 public class FullTimeTeacher extends Teacher {
-    private int experienceYears;
+    //private int experienceYears;
 
-    public FullTimeTeacher(String name, int baseSalary, int experienceYears) {
-        super(name, baseSalary);
-        this.experienceYears = experienceYears;
+    public FullTimeTeacher(String name, int baseSalary, int experienceYears, int activeHoursPerWeek) {
+        super(name, baseSalary, experienceYears, activeHoursPerWeek);
+        //this.experienceYears = experienceYears;
     }
 
 

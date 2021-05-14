@@ -6,22 +6,40 @@ import java.util.List;
 public class Course {
     private String name;
     private int classroom;
-    //private List<Student> studentsList;
-    private Teacher teacherName;
+    private ArrayList<Student> studentsList;
+    //private Teacher teacherName;
 
-    private ArrayList<Student> students = new ArrayList<>();
 
-    public Course(String name, int classroom, Teacher teacherName) {
+
+    public Course(String name, int classroom,  ArrayList<Student> studentsList) {
+        //super(studentsList);
         this.name = name;
         this.classroom = classroom;
+        this.studentsList = studentsList;
+        //this.teacherName = teacherName;
+        //this.studentsList = studentsList;
+    }
 
-        this.teacherName = teacherName;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(int classroom) {
+        this.classroom = classroom;
     }
 
 
-
-
-
+    public ArrayList<Student> getStudentsList() {
+        return this.studentsList;
+    }
 
 
     //a list of students and

@@ -1,11 +1,11 @@
 package Data;
 
 public class PartTimeTeacher extends Teacher {
-    private int activeHoursPerWeek;
+    //private int activeHoursPerWeek;
 
-    public PartTimeTeacher(String name, int baseSalary, int activeHoursPerWeek) {
-        super(name, baseSalary);
-        this.activeHoursPerWeek = activeHoursPerWeek;
+    public PartTimeTeacher(String name, int baseSalary, int experienceYears, int activeHoursPerWeek) {
+        super(name, baseSalary, experienceYears, activeHoursPerWeek);
+        //this.activeHoursPerWeek = activeHoursPerWeek;
     }
 
 
