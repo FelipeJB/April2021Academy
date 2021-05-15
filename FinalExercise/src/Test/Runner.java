@@ -36,6 +36,7 @@ public class Runner {
                     break;
                 case 4:
                     createNewCourse(teachers, courses, students);
+                    break;
                 case 5:
                     listCoursesStudentIncluded(students, courses);
                     break;
