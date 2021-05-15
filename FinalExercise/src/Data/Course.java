@@ -39,19 +39,18 @@ public class Course {
         if (courseStudents.size() == 0)
             foundStudent = false;
         else {
-            for (Student s : courseStudents) {
-                if (s.getID() == ID)
+            for (Student student : courseStudents) {
+                if (student.getID() == ID)
                     foundStudent = true;
             }
         }
         return foundStudent;
     }
 
-
     public void addStudent(Student student) {
 
         if (getStudentFromCourse(student.getID()))
-            System.out.println("The student is already in the students list");
+            System.out.println("The student is already in the list");
         else {
             courseStudents.add(student);
         }
