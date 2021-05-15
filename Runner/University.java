@@ -46,19 +46,93 @@ public class University {
             option= getOption();
             switch (option) {
                 case 1:
-                    System.out.println("option 1");
+                    for (int i=0; i<teachers.size(); i++){
+                        System.out.println("Name: "+teachers.get(i).getName()+"\n"+"Age: "+teachers.get(i).getAge()+"\n"+"Id: "+
+                                teachers.get(i).getId()+"\n"+"Base salary: "+teachers.get(i).getBaseSalary()+"\n"+"Experience years: "+
+                                teachers.get(i).getExperienceYears()+"\n"+"Contract type: "+teachers.get(i).getTypeContract()+"\n"+"Hours per week: "+
+                                teachers.get(i).getHoursPerWeek()+"\n"+"Salary : "+teachers.get(i).salaryCalculated()+"\n");
+                    }
                     break;
                 case 2:
-                    System.out.println("option 2");
+                    Scanner scan = new Scanner(System.in);
+                    int j=0;
+                    for (int i=0; i<subjects.size(); i++){
+                        j++;
+                        System.out.println(j+") Class: "+subjects.get(i).getName());
+                    }
+                    System.out.println("Please enter the number of the class for more details");
+                    int optionClass=scan.nextInt();
+                    for (int i=0; i<subjects.size(); i++) {
+                        if (optionClass == (i + 1)) {
+                            System.out.println("Class: " + subjects.get(i).getName() + "\n" + "Classroom: " + subjects.get(i).getClassroom());
+
+                            for (int l = 0; l < teachers.size(); l++) {
+                                if (subjects.get(i).getTeacherId() == teachers.get(l).getId()) {
+                                    System.out.println("Teacher: " + teachers.get(l).getName());
+                                }
+                            }
+
+                            for (int f = 0; f < students.size(); f++) {
+                                if (subjects.get(i).getStudentId1() == students.get(f).getId()) {
+                                    System.out.println("Student: " + students.get(f).getName());
+                                }
+                                if (subjects.get(i).getStudentId2() == students.get(f).getId()) {
+                                    System.out.println("Student: " + students.get(f).getName());
+                                }
+                            }
+                        }
+                    }
                     break;
                 case 3:
-                    System.out.println("option 3");
+                    Scanner scan1 = new Scanner(System.in);
+                    System.out.println("Please enter the name and last name of the new student");
+                    String nameStudent=scan1.nextLine();
+                    System.out.println("Please enter the age of the new student");
+                    int ageStudent=scan1.nextInt();
+                    students.add(new Student(nameStudent, ageStudent,students.size()+1));
+
+                    for (int i=0; i<students.size(); i++) {
+                        System.out.println("Student name: "+students.get(i).getName()+"\n"+"Student age: "+students.get(i).getAge() +"\n"+"Student Id: "+students.get(i).getId()+"\n");
+                    }
                     break;
                 case 4:
-                    System.out.println("option 4");
+                    Scanner scan2 = new Scanner(System.in);
+                    System.out.println("Please enter the name of the new subject");
+                    String nameSubject=scan2.nextLine();
+                    System.out.println("Please assign a classroom ");
+                    String classroomSubject=scan2.nextLine();
+                    subjects.add(new Subject(nameSubject,classroomSubject,2021203,3,6));
+
+                    for (int i=0; i<subjects.size(); i++) {
+                        System.out.println("\n"+"Subject name: "+subjects.get(i).getName()+"\n"+"Subject classroom: "+subjects.get(i).getClassroom() +"\n"+"Teacher Id: "+subjects.get(i).getTeacherId());
+                        for (int l = 0; l < teachers.size(); l++) {
+                            if (subjects.get(i).getTeacherId() == teachers.get(l).getId()) {
+                                System.out.println("Teacher: " + teachers.get(l).getName());
+                            }
+                        }
+
+                        for (int f = 0; f < students.size(); f++) {
+                            if (subjects.get(i).getStudentId1() == students.get(f).getId()) {
+                                System.out.println("Student: " + students.get(f).getName());
+                            }
+                            if (subjects.get(i).getStudentId2() == students.get(f).getId()) {
+                                System.out.println("Student: " + students.get(f).getName());
+                            }
+                        }
+                    }
                     break;
                 case 5:
-                    System.out.println("option 5");
+                    Scanner scan3 = new Scanner(System.in);
+                    for (int i=0; i<students.size(); i++) {
+                        System.out.println("Id: "+students.get(i).getId()+" - "+students.get(i).getName());
+                    }
+                    System.out.println("Please enter id of the student that you want to find");
+                    int idStudent=scan3.nextInt();
+                    for (int i=0; i<subjects.size(); i++) {
+                        if (idStudent == subjects.get(i).getStudentId1() || idStudent == subjects.get(i).getStudentId2()) {
+                            System.out.println("Class: " + subjects.get(i).getName() + "\n" + "Classroom: " + subjects.get(i).getClassroom() + "\n" + "Teacher Id: " + subjects.get(i).getTeacherId() + "\n");
+                        }
+                    }
                     break;
                 case 6:
                     break;
