@@ -6,18 +6,29 @@ import java.util.List;
 public class Course {
     private String name;
     private int classroom;
-    private ArrayList<Student> studentsList;
-    //private Teacher teacherName;
+    private ArrayList<Student> courseStudents = new ArrayList<>();
+    private Teacher courseTeacher;
 
-
-
-    public Course(String name, int classroom,  ArrayList<Student> studentsList) {
+    public Course(String name, int classroom, Teacher courseTeacher) {
         //super(studentsList);
         this.name = name;
         this.classroom = classroom;
-        this.studentsList = studentsList;
-        //this.teacherName = teacherName;
-        //this.studentsList = studentsList;
+        this.courseTeacher = courseTeacher;
+    }
+
+    public Course(){
+
+    }
+
+    public Student getStudentFromClassById(int id){
+        Student foundStudent = new Student();
+        for (Student s:this.courseStudents) {
+            if (s.getId() == id){
+                foundStudent = s;
+            }
+
+        }
+        return foundStudent;
     }
 
     public String getName() {
@@ -36,15 +47,21 @@ public class Course {
         this.classroom = classroom;
     }
 
-
-    public ArrayList<Student> getStudentsList() {
-        return this.studentsList;
+    public Teacher getCourseTeacher() {
+        return courseTeacher;
     }
 
+    public void setCourseTeacher(Teacher courseTeacher) {
+        this.courseTeacher = courseTeacher;
+    }
 
-    //a list of students and
-    //un atributo de tipo Teacher
+    public ArrayList<Student> getCourseStudents() {
+        return courseStudents;
+    }
 
+    public void setCourseStudents(ArrayList<Student> courseStudents){
+        this.courseStudents = courseStudents;
+    }
 
 
 }

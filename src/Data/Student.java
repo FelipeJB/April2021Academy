@@ -4,15 +4,26 @@ public class Student {
     private int id;
     private String name;
     private int age;
+    private static int count = 0;
 
 
-    public Student(String name, int id, int age) {
+    public Student(String name, int age) {
         this.name = name;
-        this.id = id;
         this.age = age;
     }
 
-    //Create a new student and add it to an existing course
+    public Student() {
+
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = Student.count++;
+    }
 
     public String getName() {
         return name;
@@ -22,20 +33,13 @@ public class Student {
         this.name = name;
     }
 
-    public int getId(){
-        return id;
-    }
-
-    public int getAge(){
+    public int getAge() {
         return age;
     }
 
-    public void setId(int newId){
-        id = newId;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public void setAge(int newAge){
-        age = newAge;
-    }
 
 }

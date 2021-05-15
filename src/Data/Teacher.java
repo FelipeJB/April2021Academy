@@ -10,6 +10,7 @@ public abstract class Teacher {
     protected int activeHoursPerWeek;
 
 
+
     public Teacher(String name, int baseSalary, int experienceYears, int activeHoursPerWeek) {
         this.name = name;
         this.baseSalary = baseSalary;
