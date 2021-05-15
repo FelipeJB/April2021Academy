@@ -2,19 +2,53 @@ package com.university.individual;
 
 public class Student extends Person {
 
-    private static int id;
+    private int Id;
+    private int semester;
+    private String course;
 
-    public Student(String name, String lastname, int age) {
-        this.name = name;
-        this.lastname = lastname;
-        this.age = age;
+    public Student(int Id, String name, String lastname, int age, int semester, String course) {
+        super(name,lastname,age);
+        this.Id = Id;
+        this.semester = semester;
+        this.course = course;
     }
 
-    public static int getId() {
-        return id;
+    public Student() {
+
     }
 
-    public static void setId(int id) {
-        Student.id = id;
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", age=" + age +
+                ", Id=" + Id +
+                '}';
     }
 }
+
