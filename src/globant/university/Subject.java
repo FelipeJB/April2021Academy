@@ -26,11 +26,6 @@ public class Subject {
         this.students = students;
     }
 
-    //Subject initialize constructor
-    public Subject(int z, String nameSubject, String schedule, String timeStartSubject, String timeEndSubject, String duration, String teacher, List<Student> students) {
-    }
-
-
     public int getId() {
         return id;
     }

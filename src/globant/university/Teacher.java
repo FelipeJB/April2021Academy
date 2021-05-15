@@ -23,9 +23,6 @@ public class Teacher extends Person {
         this.partTime = partTime;
 
     }
-    //Teacher initialize constructor
-    public Teacher(int z, String Karla, String Daniela, String Gil, String s, String s1, String f, int i, boolean b, boolean b1, Object o) {
-    }
 
     public boolean isFullTime() {
         return fullTime;

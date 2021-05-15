@@ -15,9 +15,6 @@ public class Student extends Person{
         this.qualification= qualification;
     }
 
-    //Student initialize constructor
-    public Student(int y, String Karla, String Daniela, String Gil, String s, String s1, String f, int i, int x, Object o) {
-    }
 
     // This method avoid that Java print the memory references and print the value in each position.
 

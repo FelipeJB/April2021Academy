@@ -25,6 +25,7 @@ public class Runner {
     }
 
     public static void initializeTeacher() {
+
         Teacher teacher = new Teacher(10,"Jose", "Daniel", "Gomez", "jose@gmail.com", "Carrera 29", "M", 22000,
                 true, false);
         teachers.add(teacher);
@@ -70,19 +71,39 @@ public class Runner {
     }
 
     public static void initializeSubject() {
-        Subject subject = new Subject(30, "Math", "Monday", "10:00 AM", "12:00 M", "2 hours", "Raul", null);
+        //Crating a temporal Student list for each subject
+        List<Student> LS1 = new ArrayList<>();
+        LS1.add(students.get(0));
+        LS1.add(students.get(1));
+
+        List<Student> LS2 = new ArrayList<>();
+        LS2.add(students.get(3));
+        LS2.add(students.get(4));
+        LS2.add(students.get(5));
+
+        List<Student> LS3 = new ArrayList<>();
+        LS3.add(students.get(1));
+        LS3.add(students.get(3));
+        LS3.add(students.get(2));
+        LS3.add(students.get(0));
+
+
+
+        //This class has the teacher in position number 0 of the Teachers array and contains all the list LS1 of the students
+        Subject subject = new Subject(30, "Math", "Monday", "10:00 AM", "12:00 M", 2, teachers.get(0), LS1);
         subjects.add(subject);
 
-       subject = new Subject(31, "Computer Science", "Tuesday", "1:0 PM", "3:00PM", "2 hours", "Raul", null);
+       subject = new Subject(31, "Computer Science", "Tuesday", "1:0 PM", "3:00PM", 2, teachers.get(1), LS2);
        subjects.add(subject);
 
-        subject = new Subject(32, "Diferential calculus", "Wednesday", "3:0 PM", "4:00PM", "2 hours", "Raul", null);
+        subject = new Subject(32, "Diferential calculus", "Wednesday", "3:0 PM", "4:00PM", 2, teachers.get(2), LS3);
         subjects.add(subject);
 
-        subject = new Subject(33, "Integral calculus", "Wednesday", "7:0 PM", "9:00PM", "2 hours", "Raul", null);
+        subject = new Subject(33, "Integral calculus", "Wednesday", "7:0 PM", "9:00PM", 2, teachers.get(3), LS3);
         subjects.add(subject);
 
-        subject = new Subject(33, "Integral calculus", "Wednesday", "7:0 PM", "9:00PM", "2 hours", "Raul", null);
+        //This class has the teacher in position number 3 of the array Teachers and contains all the students
+        subject = new Subject(33, "Integral calculus", "Wednesday", "7:0 PM", "9:00PM", 2, teachers.get(3), LS1);
         subjects.add(subject);
 
     }
@@ -96,7 +117,7 @@ public class Runner {
                 //Se crean las opciones y se valida que el usuario solo pueda validar las opciones disponibles del menú.
                 do {
                     System.out.println("Por favor seleccione una opción:");
-                    System.out.println("    1. Print all the professors with its data");
+                    System.out.println("    1. Print all the Teachers");
                     System.out.println("    2. Print the list of classes");
                     System.out.println("    3. Print the list of Students");
                     System.out.println("    4. Create a new student in a class");
@@ -118,33 +139,28 @@ public class Runner {
                 } while (bandera == 0);
 
                 if (seleccion == 1) {
-                    System.out.println("  Opcion 1. Print all the professors with its data");
-                    for (Teacher item : teachers) {
+                    System.out.println("  Opcion 1. Print all the teachers");
+                       for (Teacher item : teachers) {
                         System.out.println(" Teacher: " + item);
-                    }
+                        }
                 } else if (seleccion == 2) {
-                    System.out.println(" Opcion 2.");
-
-                } else if (seleccion == 3) {
-                    System.out.println(" Opcion 2.1. Print the list of Students");
-                    for (Student item : students) {
-                        System.out.println(" Student: " + item);
-                    }
-                } else if (seleccion == 4) {
-                    System.out.println(" Opcion 4. Print the list of classes");
+                    System.out.println(" Opcion 2. Print the list of classes");
                     for (Subject item : subjects) {
                         System.out.println(" subjects: " + item);
-                    }
+                        }
+                } else if (seleccion == 3) {
+                    System.out.println(" Opcion 3. Print the list of Students");
+                    for (Student item : students) {
+                        System.out.println(" Student: " + item);
+                        }
+                } else if (seleccion == 4) {
+                    System.out.println(" Opcion 4. Add a new student to an existing class");
 
                 } else if (seleccion == 5) {
-                    System.out.println(" Opcion 3.");
-
-                } else if (seleccion == 6) {
-
-                    System.out.println(" Opcion 5.");
-
-
-                } else if (seleccion == 6) {
+                    System.out.println(" Opcion 5. Create a new class and add a teacher and students");
+                } else if (seleccion == 6){
+                    System.out.println(" Opcion 6. List all the classes in which a given student is included");
+                } else if (seleccion == 7) {
                     System.out.println("-------------------------");
                     System.out.println("Gracias!, vuelva pronto.");
                     System.out.println("-------------------------");
@@ -153,5 +169,4 @@ public class Runner {
 
             } while (bandera != 2);
         }
-
   }
