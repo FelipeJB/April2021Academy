@@ -1,6 +1,9 @@
 package Data;
 
 public interface TeacherType {
-    public boolean fullTime = true;
+
+    public static final double baseSalary = 1000000;
+
+    public double getSalary(int activeHoursWeek, int experienceYears) ;
 
 }

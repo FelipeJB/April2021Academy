@@ -1,6 +1,5 @@
 package Data;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,14 +7,14 @@ public class Course {
     private String courseName;
     private String assignedClassRoom;
     private int noOfStudents;
-    ArrayList <Student> courseStudentList;
+    private ArrayList <Student> courseStudentList;
     private Teacher teacher;
 
     public Course(){
         this.noOfStudents = 0;
         this.courseName = "Not Set";
         this.teacher = null;
-        courseStudentList = new ArrayList<Student>();
+        this.courseStudentList = new ArrayList<Student>();
     }
 
 
@@ -24,7 +23,7 @@ public class Course {
             this.courseName=courseName;
             this.noOfStudents = noOfStudents;
             this.assignedClassRoom = assignedClassRoom;
-            courseStudentList = new ArrayList<Student>();
+            this.courseStudentList = new ArrayList<Student>();
             this.teacher = teacher;
         }
 
@@ -57,6 +56,13 @@ public class Course {
         this.assignedClassRoom = assignedClassRoom;
     }
 
+    public int getNoOfStudents() {
+        return noOfStudents;
+    }
+
+    public void setNoOfStudents(int noOfStudents) {
+        this.noOfStudents = noOfStudents;
+    }
 
     public ArrayList<Student> getCourseStudentList() {
         return courseStudentList;
@@ -99,8 +105,6 @@ public class Course {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
-
-
 
 
     public boolean getStudentFromCourse(int id)

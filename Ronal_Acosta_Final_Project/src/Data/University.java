@@ -2,14 +2,12 @@ package Data;
 
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class University {
     private ArrayList <Teacher> teacherList = new ArrayList<>();
     private ArrayList <Student> studentList = new ArrayList<>();
     private ArrayList <Course> courseList = new ArrayList<>();
-
     private ArrayList <Person> persons = new ArrayList<>();
 
 
@@ -78,7 +76,9 @@ public class University {
 
     }
 
-
+    public ArrayList<Student> getStudentList() {
+        return studentList;
+    }
 
     public ArrayList<Teacher> getTeacherList() {
         return teacherList;
@@ -127,27 +127,28 @@ public class University {
         return tnew;
     }
 
+    public void printListOfTeachers(University r) {
 
-    public void addStudentsToACourse(int numberOfStudents,Course ch)
-    {
-        University uni = new University();
-        Scanner scan = new Scanner(System.in);
-        for (int i =0;i<numberOfStudents;i++) {
-            System.out.println("Please enter the age of the Student: "+i+1);
-            int studentAge = scan.nextBigInteger().intValueExact();
-            scan.nextLine();
-
-            System.out.println("Please enter the name of the Student: "+i+1);
-            String studentName = scan.nextLine();
-
-            Student s = uni.createStudent(studentAge,studentName);
-            uni.addStudentToCourse(ch,s);
-
+        for (int i = 0; i < r.getTeacherList().size(); i++) {
+            System.out.println(r.getTeacherList().get(i));
         }
-
 
     }
 
+
+
+    public void listCoursesOfStudent(University r,int id4) {
+     for (int i =0;i<r.getCourseList().size();i++) {
+
+     if (r.getCourseList().get(i).getStudentFromCourse(id4)==true) {
+
+     System.out.println("The student is enrolled in: " + r.getCourseList().get(i).getCourseName());
+     }
+     else {
+     System.out.println("The student is NOT enrolled in: "+ r.getCourseList().get(i).getCourseName());
+     }
+     }
+    }
 
 
 
@@ -163,26 +164,8 @@ public class University {
         this.courseList= new ArrayList<>();
         this.studentList= new ArrayList<>();
         this.teacherList= new ArrayList<>();
+        this.persons= new ArrayList<>();
     }
-
-
-
-    public Student getStudent(int id)
-    {
-    Student s = null;
-    for (Student x: studentList){
-        if (x.getId()==id)
-        s = x;
-
-    }
-    if(s==null){
-        System.out.println("Student doesn't exist");
-    }
-        return s;
-    }
-
-
-
 
 
 

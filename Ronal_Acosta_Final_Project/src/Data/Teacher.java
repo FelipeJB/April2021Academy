@@ -1,7 +1,6 @@
 package Data;
 
 public class Teacher extends Person{
-    private static double baseSalary;
     private int experienceYears;
     private int activeHoursWeek;
 
@@ -10,7 +9,6 @@ public class Teacher extends Person{
         super(age,name);
         this.experienceYears = experienceYears;
         this.activeHoursWeek = activeHoursWeek;
-        this.baseSalary = 100000;
     }
 
 
@@ -22,9 +20,21 @@ public String toString() {
             ", age ='" + Teacher.this.getAge() + '\'' +
             ", experience years ='" + Teacher.this.getExperienceYears() + '\'' +
             ", active hours per week ='" + Teacher.this.getActiveHoursWeek() + '\'' +
-            ", salary = " + Teacher.this.getSalary(this.activeHoursWeek,this.experienceYears) +
+            ", salary = " + String.format("%.0f", Teacher.this.contractTypeSalary(this.activeHoursWeek,this.experienceYears)) +", "+ Teacher.this.messageContractType(this.activeHoursWeek,this.experienceYears) +
             '}';
 }
+
+
+    public double contractTypeSalary(int activeHoursWeek, int experienceYears){
+        ContractType contractType = new ContractType();
+        return contractType.getSalary(activeHoursWeek,experienceYears);
+    }
+
+
+    public String messageContractType(int activeHoursWeek, int experienceYears){
+        ContractType contractType = new ContractType();
+        return contractType.getTypeOfContract(activeHoursWeek,experienceYears);
+    }
 
 
 
@@ -44,18 +54,6 @@ public String toString() {
         this.activeHoursWeek = activeHoursWeek;
     }
 
-    public double getSalary(int activeHoursWeek, int experienceYears) {
-        if(activeHoursWeek>=40) {
-            return (baseSalary * (1.10 * experienceYears));
-        }
-        else if(activeHoursWeek > 0) {
-            return (baseSalary * activeHoursWeek);
-        }
-        else {
-        return 0;
-        }
-
-    }
 
 
 }
