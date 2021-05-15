@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /***
  * @autor   juandaniel.castano@globant.com - ing.daniel.castano@gmail.com
- * @version 2.0
+ * @version 2.1
  * @since   1.0
  */
 public class University {
@@ -84,12 +84,7 @@ public class University {
                     if (main.option == 1) {
                         //Print the teacher(s) that have been added
                         teacherList.forEach((n) -> { System.out.println((n.getId()) + "  " + (n.getName()) + "  " + (n.getBaseSalary()) + "  " + (n.getExperienceYear()) + "  " + (n.getTimeLabor())); });
-                        System.out.print("Type <<OK>> to continue: ");
-                        String continueOk = validateAndAssignString();
-                        while (!(continueOk.equals("OK"))){
-                            System.out.print(message + ": ");
-                            continueOk = validateAndAssignString();
-                        }
+
                         //Second option to Print all class(es) that have been added
                     } else if (main.option == 2) {
                         int classCounter = 1;
@@ -111,13 +106,6 @@ public class University {
                             System.out.println("\t" + (classList.get(main.option - 1).getStudentList().get(i).getId()) + " " + (classList.get(main.option - 1).getStudentList().get(i).getName()) + " " + (classList.get(main.option - 1).getStudentList().get(i).getAge()));
                         }
 
-                        System.out.print("Type <<OK>> to continue: ");
-                        String continueOk = validateAndAssignString();
-                        while (!(continueOk.equals("OK"))){
-                            System.out.print(message + ": ");
-                            continueOk = validateAndAssignString();
-                        }
-
                         //Third option to Create a new student
                     } else if (main.option == 3) {
                         System.out.println("\n--- NEW STUDENT ---");
@@ -132,13 +120,6 @@ public class University {
 
                         main.option = validateAndAssignInteger();
                         classList.get(main.option - 1).getStudentList().add(studentList.get(studentList.size() - 1));
-
-                        System.out.print("Type <<OK>> to continue: ");
-                        String continueOk = validateAndAssignString();
-                        while (!(continueOk.equals("OK"))){
-                            System.out.print(message + ": ");
-                            continueOk = validateAndAssignString();
-                        }
 
                         //Fourth option to Create a new class
                     } else if (main.option == 4) {
@@ -172,13 +153,6 @@ public class University {
                             }
                         }
 
-                        System.out.print("Type <<OK>> to continue: ");
-                        String continueOk = validateAndAssignString();
-                        while (!(continueOk.equals("OK"))){
-                            System.out.print(message + ": ");
-                            continueOk = validateAndAssignString();
-                        }
-
                     }else{
                         //Print the current Student List
                         System.out.println("Below, It is the Student list so far: ");
@@ -204,13 +178,7 @@ public class University {
                             }
                         }while(keepScoring.equals("Yes"));
                     }
-                    System.out.print("Type <<OK>> to continue: ");
-                    String continueOk = validateAndAssignString();
-                    while (!(continueOk.equals("OK"))){
-                        System.out.print(message + ": ");
-                        continueOk = validateAndAssignString();
-                    }
-                    
+
                     showMenu();
                     //Validate the data entered
                     main.option = validateAndAssignInteger();
