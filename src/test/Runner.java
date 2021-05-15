@@ -13,6 +13,7 @@ public class Runner {
     static List<Student> students = new ArrayList<>();
     static List<Course> courses = new ArrayList<>();
     static List<Teacher> teachers = new ArrayList<>();
+    static List<Student> newStudentList = new ArrayList<>(students);
 
 
     public static void main(String[] args) {
@@ -47,10 +48,10 @@ public class Runner {
                      createStudent(university);
                      break;
                  case 4:
-                     //create a new class and add a teacher student etc
+                     createCourse(university);
                      break;
                  case 5:
-                     //search student by student id
+                     searchStudentById(university);
                      break;
                  case 6:
                      exitValue = false;
@@ -99,7 +100,7 @@ public class Runner {
         Course courseMath = new Course("Matematicas", 101, university.getStudents(), university.getTeachers().get(0));
         Course courseDevelopment = new Course("Programacion I", 101, university.getStudents(), university.getTeachers().get(1));
         Course courseDB = new Course("Bases de Datos", 101, university.getStudents(), university.getTeachers().get(2));
-        Course courseWebDev = new Course("Web development", 101, university.getStudents(), university.getTeachers().get(0));
+        Course courseWebDev = new Course("Web development", 101, university.getStudents(), university.getTeachers().get(3));
 
         courses.add(courseMath);
         courses.add(courseDevelopment);
@@ -131,7 +132,7 @@ public class Runner {
         System.out.println("Ingrese id");
         int id = scanner.nextInt();
 
-        List<Student> newStudentList = new ArrayList<>(students);
+
 
         Student studentCreated = new Student(name, age, id);
 
@@ -159,12 +160,49 @@ public class Runner {
             if (optionSelected == i) {
                 System.out.println("Nombre del curso: "+courses.get(i).getCourseName());
                 System.out.println("Nombre del docente: "+courses.get(i).getTeacher().getName());
+                System.out.println("Salon de clase numero: "+courses.get(i).getClassroom());
                 for (int j = 0; j < university.getCourses().get(i).getStudents().size(); j++) {
                     System.out.println("Nombre del estudiante "+ j + " " + courses.get(i).getStudents().get(j).getName());
-                    System.out.println("    ");
                 }
             }
+            System.out.println("    ");
         }
 
     }
+
+    public static void createCourse(University university) {
+        System.out.println("Ingrese el nombre del curso");
+        String nameCourse = scanner.next();
+        System.out.println("Ingrese el salon de clase");
+        int classroom = scanner.nextInt();
+
+        Random random = new Random();
+        int randomNumber = random.nextInt(4);
+
+        Course courseCreated = new Course(nameCourse, classroom, students, teachers.get(randomNumber));
+
+        courses.add(courseCreated);
+
+        for (int i = 0; i<courses.size(); i++) {
+            System.out.println(courses.get(i).getCourseName());
+            System.out.println(courses.get(i).getTeacher().getName());
+            System.out.println(courses.get(i).getClassroom());
+        }
+    }
+
+    public static void searchStudentById(University university) {
+        System.out.println("Ingrese el ID del estudiante que desea buscar");
+        int ID = scanner.nextInt();
+
+        for (int i = 0; i < courses.size(); i++) {
+           for (int j =0; j < newStudentList.size(); j++) {
+               if (ID == university.getCourses().get(i).getStudents().get(j).getId()) {
+                   System.out.println(university.getCourses().get(i).getCourseName());
+               }
+           }
+        }
+        System.out.println("    ");
+    }
+
+
 }

@@ -49,4 +49,5 @@ public class Course extends University {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
+
 }
