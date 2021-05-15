@@ -15,5 +15,15 @@ public class Subject {
         this.studentId2=studentId2;
     }
 
+    public String getName() { return name; }
+
+    public String getClassroom() { return classroom; }
+
+    public int getTeacherId() { return teacherId; }
+
+    public int getStudentId1() { return studentId1; }
+
+    public int getStudentId2() { return studentId2; }
+
 
 }

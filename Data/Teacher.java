@@ -16,4 +16,25 @@ public class Teacher extends Person{
         this.hoursPerWeek=hoursPerWeek;
     }
 
+    public int getId() { return id; }
+
+    public int getBaseSalary() { return baseSalary; }
+
+    public int getExperienceYears() { return experienceYears; }
+
+    public String getTypeContract() { return typeContract; }
+
+    public int getHoursPerWeek() { return hoursPerWeek; }
+
+    public double salaryCalculated (){
+        double fullSalary;
+
+        if(this.typeContract=="Full time"){
+             fullSalary=baseSalary*experienceYears;
+        }
+        else{
+             fullSalary=baseSalary*hoursPerWeek;
+        }
+        return fullSalary;
+    }
 }
